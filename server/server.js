@@ -10,37 +10,31 @@ const dotenv = require('dotenv')
 const userRouter = require('./routes/userRoutes')
 const cors = require('cors')
 
+const userRouter = require('./routes/userRoutes');
+const cors = require('cors');
 
 dotenv.config();
 const PORT = 3000;
 app.use(express.json());
 connectDB();
 //aloows the server to interact with website
-app.use(cors())
+app.use(cors());
 
-//connect 
-connectDB()
+//connect
+connectDB();
 
 app.use(express.static(path.join(__dirname, 'public', 'index.html')));
 
-
 //api routes
-app.use('/api/user', userRouter)
+app.use('/api/user', userRouter);
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 //CHAT GPT
 //add to controller file to modularize
-app.post('/api/chat', async (req, res) => {
-  const { message } = req.body;
-  const completion = await openai.createCompletion({
-    model: 'gpt-3.5-turbo-0125',
-    prompt: message,
-    max_tokens: 200,
-  });
-
-  res.json({ response: completion.data.choices[0].text });
+app.get('/api/openai', aiController.getArticle, (req, res) => {
+  res.status(200).send(res.locals.getArticle);
 });
 
 //error handlers

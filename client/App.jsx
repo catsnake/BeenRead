@@ -6,8 +6,8 @@ import Feed from './components/Feed.jsx';
 
 //import styles from './styles.scss';
 
-
 const App = () => {
+
   return (
     <div>
         <div><h1 id= 'title'>
