@@ -10,6 +10,7 @@ const cors = require('cors')
 dotenv.config()
 const PORT = 3000;
 app.use(express.json());
+//aloows the server to interact with website
 app.use(cors())
 
 //connect 
