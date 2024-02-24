@@ -16,27 +16,35 @@ try {
         res.status(500).json('Cannot create new user!')
     }
 } catch (error) {
-    return next('Error in userController.signup: ' + error.message)
+    return next({
+        log: 'Error in userController.signin',
+        message: {error: 'cannot create a new user'}
+    })
 }
     
 }
 
 userController.signin = async (req, res,  next) => {
     try {
+      
         const {email, password} = req.body;
 
-        const user = await User.findOne({email}).exec()
+        const user = await User.findOne({email}).exec();
 
-        if(user && await User.comparePassword(password)){
+       
+
+        if(user && await user.comparePassword(password)){
             res.locals.user = user;
             return next();
         }else{
             res.status(404).json('Invalid email or password')
         }
     } catch (error) {
-        console.log('is this hitting')
-        return next('Error in userController.signin: ' + error.message)
-    }
+        return next({
+            log: 'Error in userController.signin: ',
+            message: {error: 'cannot sign in'}
+    })
+}
 }
 
 module.exports = userController;
