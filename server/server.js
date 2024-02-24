@@ -1,9 +1,13 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const connectDB = require("./config/db")
+const dotenv = require('dotenv')
 
+dotenv.config()
 const PORT = 3000;
 app.use(express.json());
+connectDB()
 
 app.use(express.static(path.join(__dirname, 'public', 'index.html')));
 
