@@ -6,12 +6,11 @@ import Feed from './components/Feed.jsx';
 
 import styles from './styles.scss';
 
-
 const App = () => {
+
   return (
-    <div><h1 id= 'title'>
-        BeRead : Expand Your Mind
-    </h1>
+    <div>
+      <h1 id="title">BeRead : Expand Your Mind</h1>
       <Authenticator />
     </div>
   );
