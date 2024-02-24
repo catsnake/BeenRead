@@ -3,14 +3,24 @@ const app = express();
 const path = require('path');
 const connectDB = require("./config/db")
 const dotenv = require('dotenv')
+const userRouter = require('./routes/userRoutes')
+const cors = require('cors')
+
 
 dotenv.config()
 const PORT = 3000;
 app.use(express.json());
+//aloows the server to interact with website
+app.use(cors())
+
+//connect 
 connectDB()
 
 app.use(express.static(path.join(__dirname, 'public', 'index.html')));
 
+
+//api routes
+app.use('/api/user', userRouter)
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
