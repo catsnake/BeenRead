@@ -3,6 +3,10 @@ const app = express();
 const path = require('path');
 const connectDB = require("./config/db")
 const dotenv = require('dotenv')
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
 
 dotenv.config()
 const PORT = 3000;
@@ -14,6 +18,23 @@ app.use(express.static(path.join(__dirname, 'public', 'index.html')));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
+
+//CHAT GPT
+//add to controller file to modularize
+app.post('/api/chat', async (req, res) => {
+  const { message } = req.body
+    const completion = await openai.createCompletion({
+        model: "gpt-3.5-turbo-0125",
+        prompt: message,
+        max_tokens:200
+      });
+  
+   res.json({ response: completion.data.choices[0].text }
+
+
+
+
+
 
 //error handlers
 app.use((req, res) =>
