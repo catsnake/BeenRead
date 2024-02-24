@@ -1,9 +1,14 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const connectDB = require('./config/db');
-const dotenv = require('dotenv');
-const aiController = require('./controllers/openAiController');
+// const configuration = new Configuration({
+//   apiKey: process.env.OPENAI_API_KEY,
+// });
+// const openai = new OpenAIApi(configuration);
+const connectDB = require("./config/db")
+const dotenv = require('dotenv')
+const userRouter = require('./routes/userRoutes')
+const cors = require('cors')
 
 const userRouter = require('./routes/userRoutes');
 const cors = require('cors');

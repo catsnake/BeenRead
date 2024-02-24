@@ -13,7 +13,19 @@ import React, { Component } from 'react';
 const Feed = () => {
   //This is where our times requests from front end will be.
 
+<<<<<<< HEAD
   return(
+=======
+//This is where our times requests from front end will be.
+
+
+    return( 
+        <div>
+            Sup fooo
+        </div>
+    );
+    }
+>>>>>>> development
     
   );
 };
