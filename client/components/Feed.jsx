@@ -21,7 +21,11 @@ const Feed = () => {
 //This is where our times requests from front end will be.
 
 
-    return;
+    return( 
+        <div>
+            Sup fooo
+        </div>
+    );
     }
     
     export default Feed;
