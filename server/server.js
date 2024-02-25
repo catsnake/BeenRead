@@ -1,47 +1,47 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-// const configuration = new Configuration({
-//   apiKey: process.env.OPENAI_API_KEY,
-// });
-// const openai = new OpenAIApi(configuration);
 const connectDB = require("./config/db")
 const dotenv = require('dotenv')
 const userRouter = require('./routes/userRoutes')
 const cors = require('cors')
+const aiController = require('./controllers/openAiController')
+const articleRouter = require('./routes/articleRoutes')
 
-const userRouter = require('./routes/userRoutes');
-const cors = require('cors');
-
-dotenv.config();
 const PORT = 3000;
+
+//use dotenv
+dotenv.config();
 app.use(express.json());
-connectDB();
-//aloows the server to interact with website
+
+//allows the server to interact with website
 app.use(cors());
 
-//connect
+//connect database
 connectDB();
 
-app.use(express.static(path.join(__dirname, 'public', 'index.html')));
+app.use(express.static(path.join(__dirname, 'index.html')));
 
-//api routes
+//use API routers
+
 app.use('/api/user', userRouter);
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
-});
-
-//CHAT GPT
-//add to controller file to modularize
+//CHAT GPT - add to controller file to modularize
 app.get('/api/openai', aiController.getArticle, (req, res) => {
   res.status(200).send(res.locals.getArticle);
 });
+app.use('/api/article', articleRouter)
 
-//error handlers
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, './index.html'));
+});
+
+//error handlers for unknown page
 app.use((req, res) =>
   res.status(404).send("This is not the page you're looking for...")
 );
 
+//global error handlers
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
@@ -52,6 +52,7 @@ app.use((err, req, res, next) => {
   // console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj);
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);

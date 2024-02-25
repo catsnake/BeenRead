@@ -24,7 +24,7 @@ import Signup from './components/SignUp.jsx';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route index={true}  path="/signin" element={<Authenticator />} />
+      <Route index={true}  path="/" element={<Authenticator />} />
       <Route path="/signup" element={<Signup />} />
       {/* <Route index={true}  path="/" element={<Feed />} /> */}
     </Route>

@@ -21,19 +21,16 @@ const userSchema = new Schema ({
     password : {
         type: String,
         required : true,
-        
-        
     },
-    articlesRead : {
-        type: Array,
-        required: true,
-    
-    },
-    amtOfArticles : {
-        type: Number,
-        required: true,
-        default: 0
-    }
+    // articlesRead : {
+    //     type: Array,
+    //     required: true,
+    // },
+    // amtOfArticles : {
+    //     type: Number,
+    //     required: true,
+    //     default: 0
+    // }
 })
 
 userSchema.pre('save', function (next) {
