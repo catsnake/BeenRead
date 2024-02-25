@@ -2,7 +2,7 @@ const aiController = {};
 
 aiController.getArticle = async (req, res, next) => {
   try {
-    console.log('entered try block');
+    // console.log('entered try block');
     let openaiKey = process.env.OPEN_API_KEY;
     console.log('api key', process.env.OPEN_API_KEY);
     const rawData = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -20,9 +20,9 @@ aiController.getArticle = async (req, res, next) => {
         temperature: 0.7,
       }),
     });
-    console.log('rawdata', rawData);
+    // console.log('rawdata', rawData);
     const content = await rawData.json();
-    console.log('content', content);
+    // console.log('content', content);
     res.locals.getArticle = content.choices[0].message.content;
     return next();
   } catch (err) {
