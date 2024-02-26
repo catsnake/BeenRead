@@ -20,7 +20,7 @@ const ArticleHistory = () => {
             <div>
                 {data.map((article) => (
                     <div>
-                        <p>{article.createdAt}</p>
+                        <button>{article.createdAt}</button>
                         <p>{article.content}</p>
                     </div>
                 ))}

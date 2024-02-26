@@ -8,7 +8,7 @@ import { useSignupMutation } from "../slices/api/userApiSlice";
 import { setCredentials } from "../slices/reducers/authSlice";
 
 const SignupPage = () => {
-  const [name, setName] = useState("");
+  const [username, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -28,7 +28,7 @@ const SignupPage = () => {
       // The promise returned by the dispatched thunk has an unwrap property which can be called to extract 
       // the payload of a fulfilled action or to throw either the error or, if available, payload created 
       // by rejectWithValue from a rejected action:
-        const res = await signup({name, email, password }).unwrap();
+        const res = await signup({username, email, password }).unwrap();
         // toast.success("Sign up successfully!");
         dispatch(setCredentials(res));
     } catch (error) {
@@ -58,7 +58,7 @@ const SignupPage = () => {
                 </label>
                 <input
                   type="text"
-                  value={name}
+                  value={username}
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-amber-600 focus:border-amber-600 block w-full p-2.5 "
                   placeholder="Code Smith"
                   required
@@ -121,7 +121,7 @@ const SignupPage = () => {
 
               <button
                 type="submit"
-                className="w-full text-white bg-amber-500 hover:bg-amber-700 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-full text-white bg-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
                 Sign up
               </button>
@@ -129,7 +129,7 @@ const SignupPage = () => {
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Have an Account?{" "}
                 <Link
-                  to="/signin"
+                  to="/"
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
                   Sign in
