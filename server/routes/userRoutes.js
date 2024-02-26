@@ -10,6 +10,7 @@ router.post('/signup', userController.signup, (req, res) => {
         username: res.locals.newUser.username,
         email: res.locals.newUser.email
      })
+   //   return res.redirect("/");
 
 })
 
@@ -19,6 +20,7 @@ router.post('/signin', userController.signin , (req, res) => {
         username: res.locals.user.username,
         email: res.locals.user.email
      })
+   //   return res.redirect("/");
 })
 
 
