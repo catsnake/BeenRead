@@ -8,9 +8,9 @@ import Feed from './components/Feed.jsx';
 const App = () => {
 
   return (
-    <div className='bg-pink-200'>
+    <div >
         <div>
-    <h5 id= 'subtitle' className="flex flex-col items-center justify-center mx-auto md:my-6 text-black font-size-68px bg-pink-200 ">
+    <h5 id= 'subtitle' className="flex flex-col items-center justify-center mx-auto md:my-6 text-black font-size-68px  ">
         BeRead
     </h5>
     </div>

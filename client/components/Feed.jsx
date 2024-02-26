@@ -22,7 +22,7 @@ const Feed = () => {
   
 
   const handleClick = () => {
-    fetch('http://localhost:3000/savedArticle')
+    fetch('http://localhost:3000/')
       .then((data)=> data.json())
       .then((data) => {
         setMyFeed(data);
@@ -33,7 +33,7 @@ const Feed = () => {
 
   return ( <div className="flex flex-col items-center justify-center mx-auto md:my-6">
     <div>{myFeed}</div>
-    <button onclick={handleClick} className="text-white bg-blue-700 hover:bg-blue-800">Get Random Article</button>
+    <button id= "article" onclick={handleClick} className="text-white bg-black hover:bg-blue-800">Get Random Article</button>
   </div>)
 };
 
