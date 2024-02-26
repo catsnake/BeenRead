@@ -40,4 +40,32 @@
     border-radius: 25px;
 }
 
+#feedbox{
+    display : grid;
+    text-align: center;
+    justify-content: center;
+    height: 650px;
+    overflow: scroll;
+    width:350px;
+    border-radius: 13px;
+    margin-bottom: 30px;
+    margin-left: 23px;
+    margin-right: 23px;
+    background-color: white;
+    padding: 20px;
+}
+
+#gimme{
+    background-color: rgb(239, 197, 204);
+    font-size: 25px;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 25px;
+    width: 175px;
+    box-shadow: 0px 0px 1px 1px rgb(0,0,0);
+}
+
+#gimme:active{
+    background-color: rgb(177, 143, 148);
+}
 
