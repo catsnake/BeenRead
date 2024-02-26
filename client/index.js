@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from './slices/store.js';
 import "./main.css";
-
+import styles from "./styles.css"
 // import styles from './styles.scss';
 
 //import browser router elements

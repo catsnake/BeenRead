@@ -40,7 +40,7 @@ const SignupPage = () => {
   };
 
   return (
-    <section>
+    <section id= "signup">
       <div className="flex flex-col items-center justify-center mx-auto md:my-6">
         <div className="w-full border bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
