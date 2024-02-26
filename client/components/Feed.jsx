@@ -27,7 +27,9 @@ const Feed = () => {
   const [savedArticle] = useSaveArticleMutation();
 
   const feedArticle = async () => {
-    setMyFeed('');
+    setMyFeed(
+      'The Pink Fairy Armadillo is grabbing your article now! Pwease be patient uwu'
+    );
     try {
       const res = await savedArticle({
         userId: userData.userData._id,
@@ -39,11 +41,9 @@ const Feed = () => {
     }
   };
 
-
-
   const handleClick = () => {
-    feedArticle()
-    
+    feedArticle();
+
     setdisValue(true);
     setclickValue('disabled');
     console.log('button clicked');
@@ -51,7 +51,8 @@ const Feed = () => {
       console.log('done waiting!');
       setdisValue(false);
       setclickValue('click for new article');
-    }, 60000);
+      setMyFeed('Article');
+    }, 20000);
   };
 
   // const handleClick = () => {
