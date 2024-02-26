@@ -67,4 +67,31 @@ articleController.generateArticleHistory = async(req, res, next) => {
     }
 }
 
+articleController.checkIsRead = async (req, res, next) => {
+    const {articleId} = req.body;
+
+    try {
+        const findArticle = await Article.findById({_id: articleId}).exec();
+        // console.log(findArticle)
+        
+        if(findArticle){
+
+            findArticle.isRead = true;
+            console.log(findArticle)
+
+            res.locals.findArticle = findArticle;
+
+            return next()
+
+        }else{
+            res.status(404).json('Article not found!')
+        }
+    } catch (error) {
+        return next ({
+            log: "Error in articleController.checkIsRead",
+            message: 'Cannot change value for isRead'
+        })
+    }
+}
+
 module.exports = articleController;
