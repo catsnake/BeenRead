@@ -3,8 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from './slices/store.js';
 import "./main.css";
-import styles from "./styles.css"
-// import styles from './styles.scss';
+import styles from './styles.css';
 
 //import browser router elements
 import {
@@ -20,13 +19,15 @@ import App from './App.jsx';
 import Feed from './components/Feed.jsx';
 import Authenticator from './components/Authenticator.jsx';
 import Signup from './components/SignUp.jsx';
+import ArticleHistory from './components/ArticleHistory.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route index={true}  path="/signin" className='bg-pink-200' element={<Authenticator />} />
+      <Route index={true}  path="/"  element={<Authenticator />} />
       <Route path="/signup" element={<Signup />} />
-      <Route index={true}  path="/" element={<Feed />} />
+      <Route path="/feed" element={<Feed />} />
+      <Route path='/articleHistory/:id' element={<ArticleHistory />} />
     </Route>
   )
 );
