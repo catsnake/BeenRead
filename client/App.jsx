@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Router,
   Route,
@@ -6,22 +6,21 @@ import {
   Link,
   BrowserRouter,
   Outlet,
-} from "react-router-dom";
+} from 'react-router-dom';
 
 // import Authenticator from "./components/Authenticator.jsx";
 // import Feed from "./components/Feed.jsx";
 
 const App = () => {
   return (
-    <div className="bg-pink-200">
+    <div className="">
       <div>
         <h5
           id="subtitle"
-          className="flex flex-col items-center justify-center mx-auto md:my-6 text-black font-size-68px "
+          className="flex flex-col items-center justify-center mx-auto md:my-6 text-black font-size-68px"
         >
           BeRead
         </h5>
-
       </div>
       <div className="mt-a6 p-8 mx-auto">
         <Outlet />

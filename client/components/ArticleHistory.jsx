@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useGenerateHistoryQuery } from '../slices/api/articleSlice';
 import { useParams } from 'react-router';
+import {
+  Link,
+  useNavigate,
+  useLocation,
+  Route,
+  Routes,
+} from 'react-router-dom';
+import { Navbar } from './Navbar';
+import { useSelector } from 'react-redux';
 
 const ArticleHistory = () => {
   const [articleHistory, setArticleHistory] = useState([]);
-
+  const userData = useSelector((state) => state.auth);
   const { id } = useParams();
-  //console.log('id:',id)
   const { data, isLoading } = useGenerateHistoryQuery(id);
   const [show, setShow] = useState(false);
-  //   const [show2, setShow2] = useState('')
 
-  // useEffect(() => {
-  //     setArticleHistory(data)
-  //     console.log('data:',data)
-  //     // console.log('history', articleHistory)
-  // }, [data, articleHistory])
-  //   if(isLoading)
+  useEffect(() => {
+    setArticleHistory(data);
+    console.log(data);
+    // console.log('history', articleHistory)
+  }, [data, articleHistory]);
+
   return (
     <div>
       {isLoading ? (
@@ -39,10 +46,10 @@ const ArticleHistory = () => {
               {show && article.content}
             </div>
           ))}
+          <Navbar userData={userData} />
         </div>
       )}
     </div>
   );
 };
-
 export default ArticleHistory;
