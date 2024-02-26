@@ -13,8 +13,8 @@ router.post(
   }
 );
 
-router.post(
-  "/generateArticleHistory",
+router.get(
+  "/generateArticleHistory/:id",
   articleController.generateArticleHistory,
   (req, res) => {
     res.status(200).json(res.locals.generateArticleHistory);

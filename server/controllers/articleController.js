@@ -39,9 +39,10 @@ articleController.saveArticle = async (req, res, next) => {
     }
 }
 
+
 articleController.generateArticleHistory = async(req, res, next) => {
     try {
-        const {userId} = req.body;
+        const userId = req.params.id;
 
         const findUser = await User.findById({_id: userId});
 
