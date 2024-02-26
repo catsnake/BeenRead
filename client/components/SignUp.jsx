@@ -25,7 +25,9 @@ const SignupPage = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      // The promise returned by the dispatched thunk has an unwrap property which can be called to extract the payload of a fulfilled action or to throw either the error or, if available, payload created by rejectWithValue from a rejected action:
+      // The promise returned by the dispatched thunk has an unwrap property which can be called to extract 
+      // the payload of a fulfilled action or to throw either the error or, if available, payload created 
+      // by rejectWithValue from a rejected action:
         const res = await signup({name, email, password }).unwrap();
         // toast.success("Sign up successfully!");
         dispatch(setCredentials(res));
@@ -74,7 +76,7 @@ const SignupPage = () => {
                   type="email"
                   value={email}
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-amber-600 focus:border-amber-600 block w-full p-2.5 "
-                  placeholder="name@gmail.com"
+                  placeholder="name@email.com"
                   required
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -125,7 +127,7 @@ const SignupPage = () => {
               </button>
 
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Have you already had an account?{" "}
+                Have an Account?{" "}
                 <Link
                   to="/signin"
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
