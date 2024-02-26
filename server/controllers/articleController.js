@@ -71,16 +71,13 @@ articleController.checkIsRead = async (req, res, next) => {
     const {articleId} = req.body;
 
     try {
-        const findArticle = await Article.findById({_id: articleId}).exec();
+        const findArticle = await Article.findOneAndUpdate({_id: articleId},{isRead : true}, {new: true} )
         // console.log(findArticle)
         
         if(findArticle){
+            
 
-            findArticle.isRead = true;
-            console.log(findArticle)
-
-            res.locals.findArticle = findArticle;
-
+            res.locals.findArticle = findArticle
             return next()
 
         }else{

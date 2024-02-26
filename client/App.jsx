@@ -17,7 +17,7 @@ const App = () => {
       <div>
         <h5
           id="subtitle"
-          className="flex flex-col items-center justify-center mx-auto md:my-6 text-black font-size-68px bg-pink-200 "
+          className="flex flex-col items-center justify-center mx-auto md:my-6 text-black font-size-68px "
         >
           BeRead
         </h5>
