@@ -15,7 +15,7 @@ aiController.getArticle = async (req, res, next) => {
       body: JSON.stringify({
         model: 'gpt-3.5-turbo-0125',
         messages: [
-          { role: 'user', content: 'Give me a random 10 sentenced article from Wikipedia' },
+          { role: 'user', content: 'Give me a random 10 sentenced article' },
         ],
         temperature: 0.7,
       }),
