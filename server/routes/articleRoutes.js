@@ -21,7 +21,7 @@ router.get(
   }
 );
 
-router.post( '/checkIsRead', articleController.checkIsRead, (req, res) => {
+router.put( '/checkIsRead', articleController.checkIsRead, (req, res) => {
   res.status(200).json(res.locals.findArticle)
 })
 

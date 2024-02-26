@@ -14,8 +14,15 @@ export const articleReducer = apiSlice.injectEndpoints({
             query: (id) => ({
                 url: `${ARTICLE_URL}/generateArticleHistory/${id}`,
             })
+        }),
+        checkIsRead : builder.mutation({
+            query : (data) => ({
+                url: `${ARTICLE_URL}/checkIsRead`,
+                method: 'PUT',
+                body: data,
+            })
         })
     })
 })
 
-export const {useSaveArticleMutation, useGenerateHistoryQuery} = articleReducer;
+export const {useSaveArticleMutation, useGenerateHistoryQuery, useCheckIsReadMutation} = articleReducer;

@@ -1,45 +1,55 @@
 import React, { useEffect, useState } from 'react';
 import { useGenerateHistoryQuery } from '../slices/api/articleSlice';
 import { useParams } from 'react-router';
-import { Link, useNavigate, useLocation, Route, Routes} from 'react-router-dom';
-import { Navbar } from './Navbar'
+import {
+  Link,
+  useNavigate,
+  useLocation,
+  Route,
+  Routes,
+} from 'react-router-dom';
+import { Navbar } from './Navbar';
 import { useSelector } from 'react-redux';
 
-
-
-
 const ArticleHistory = () => {
-    const [articleHistory, setArticleHistory] = useState([])
+  const [articleHistory, setArticleHistory] = useState([]);
+  const userData = useSelector((state) => state.auth);
+  const { id } = useParams();
+  const { data, isLoading } = useGenerateHistoryQuery(id);
+  const [show, setShow] = useState(false);
 
-    const {id} = useParams();
-    console.log(id)
-    const {data, isLoading} = useGenerateHistoryQuery(id);
+  useEffect(() => {
+    setArticleHistory(data);
+    console.log(data);
+    // console.log('history', articleHistory)
+  }, [data, articleHistory]);
 
-    const userData = useSelector((state) => state.auth);
-
-    useEffect(() => {
-        setArticleHistory(data)
-        console.log(data)
-        // console.log('history', articleHistory)
-    }, [data, articleHistory])
   return (
     <div>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
         <div>
-        {/* <Navbar/> */}
-        </div>
-        {isLoading ? (<p>Loading...</p>) : (
-            <div>
-                {data.map((article) => (
-                    <div>
-                        <button>{article.createdAt}</button>
-                        <p>{article.content}</p>
-                    </div>
-                ))}
+          {data.map((article) => (
+            <div
+              onClick={() => {
+                if (article.isRead === true) {
+                  setShow(true);
+                } else {
+                  setShow(false);
+                }
+              }}
+            >
+              {article.createdAt}
+              {article.isRead === true && <p>Was Read</p>}
+              {article.isRead === false && <p>Not Read</p>}
+              {show && article.content}
             </div>
-        )}
-        <Navbar userData= {userData} />
+          ))}
+          <Navbar userData={userData} />
+        </div>
+      )}
     </div>
-  )
-}
-
-export default ArticleHistory
+  );
+};
+export default ArticleHistory;
