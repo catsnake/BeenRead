@@ -1,4 +1,4 @@
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation, Route, Routes} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -9,14 +9,16 @@ import { logout } from '../slices/reducers/authSlice';
 import React, { Component } from 'react';
 // import { Router, Route, Routes, Link, BrowserRouter } from 'react-router-dom'
 import { useSaveArticleMutation } from '../slices/api/articleSlice';
+import  { Navbar } from "./Navbar";
+import ArticleHistory from './ArticleHistory';
 
 const Feed = () => {
   //This is where our times requests from front end will be.
   //handle click event that does does fetch request
   //should we employ use effect and use state?
-  const [myFeed, setMyFeed] = useState('Article');
+  const [myFeed, setMyFeed] = useState('Click the "Gimme Dat" button for a new article');
   const [disValue, setdisValue] = useState(false);
-  const [clickValue, setclickValue] = useState('click for new article');
+  const [clickValue, setclickValue] = useState('GIMME DAT');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -50,19 +52,12 @@ const Feed = () => {
     setTimeout(() => {
       console.log('done waiting!');
       setdisValue(false);
-      setclickValue('click for new article');
-      setMyFeed('Article');
+      setclickValue('GIMME DAT');
+      setMyFeed('Click the "Gimme Dat" button for a new article');
     }, 20000);
   };
 
-  // const handleClick = () => {
-  //   fetch("http://localhost:3000/savedArticle")
-  //     .then((data) => data.json())
-  //     .then((data) => {
-  //       setMyFeed(data);
-  //       console.log(data);
-  //     });
-  // };
+
   const logoutHandler = () => {
     dispatch(logout());
     navigate('/');
@@ -71,28 +66,17 @@ const Feed = () => {
 
   return (
     <div className="flex flex-col items-center justify-center mx-auto md:my-6">
-      <div>{myFeed}</div>
+      <div>
+      <Navbar userData= {userData} />
+      </div>
+      <div id="feedbox">{myFeed}</div>
 
-      <button disabled={disValue} onClick={handleClick} className="button">
+      <button id="gimme" disabled={disValue} onClick={handleClick} className="button">
         {clickValue}{' '}
       </button>
-
-      <button
-        onClick={() => navigate(`/articleHistory/${userData.userData._id}`)}
-      >
-        Go to Article History
-      </button>
-
-      <button onClick={logoutHandler}>logout</button>
     </div>
   );
 };
 
 export default Feed;
-// <button
-// // onclick={handleClick}
-// onClick={feedArticle}
-// className="text-white bg-blue-700 hover:bg-blue-800"
-// >
-// Get Random Article
-// </button>
+
