@@ -43,11 +43,12 @@ feedController.getFollowedUsersFeedData = async (req, res, next) => {
 
 feedController.postReaction = async (req, res, next) => {
   try {
-    const { username, reaction } = req.body;
+    const { username, postUsername, reaction } = req.body;
 
     const user = await User.findOne({ username });
+    const postUser = await User.findOne({ username: postUsername });
 
-    if (!user) {
+    if (!user || !postUser) {
       return res.status(404).json({ error: 'User not found' });
     }
 
@@ -57,7 +58,7 @@ feedController.postReaction = async (req, res, next) => {
     };
 
     const updatedUser = await User.findByIdAndUpdate(
-      user._id,
+      postUser._id,
       { $push: { dailyReactions: reactionObj } },
       { new: true }
     );
