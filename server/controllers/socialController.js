@@ -47,7 +47,7 @@ socialController.getFollowedUsers = async (req, res, next) => {
   try {
     const { username } = req.params;
 
-    const user = await User.findOne({ username })
+    await User.findOne({ username })
       .populate('followedUsers', 'username')
       .then((user) => {
         const followedUsernames = user.followedUsers.map(
@@ -112,11 +112,13 @@ socialController.getFollowers = async (req, res, next) => {
 
     const userId = user._id;
 
-    const followers = await User.findById(userId)
+    await User.findById(userId)
       .populate('followers', 'username')
       .then((user) => {
-        const followers = user.followers.map((follower) => follower.username);
-        res.locals.followers = followers;
+        const followersArray = user.followers.map(
+          (follower) => follower.username
+        );
+        res.locals.followers = followersArray;
         return next();
       });
   } catch (error) {
