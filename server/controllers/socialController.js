@@ -45,7 +45,7 @@ socialController.followUser = async (req, res, next) => {
 
 socialController.getFollowedUsers = async (req, res, next) => {
   try {
-    const { username } = req.body;
+    const { username } = req.params;
 
     const user = await User.findOne({ username })
       .populate('followedUsers', 'username')
@@ -100,9 +100,19 @@ socialController.unfollowUser = async (req, res, next) => {
 
 socialController.getFollowers = async (req, res, next) => {
   try {
-    const { userId } = req.body;
+    const { username } = req.params;
 
-    const user = await User.findById(userId)
+    const user = await User.findOne({ username });
+    if (!user) {
+      return next({
+        log: 'Error in userController.getFollowers: ',
+        message: { error: 'User not found' },
+      });
+    }
+
+    const userId = user._id;
+
+    const followers = await User.findById(userId)
       .populate('followers', 'username')
       .then((user) => {
         const followers = user.followers.map((follower) => follower.username);
@@ -112,11 +122,9 @@ socialController.getFollowers = async (req, res, next) => {
   } catch (error) {
     return next({
       log: 'Error in userController.getFollowers: ',
-      message: { error: 'cannot get followers' },
+      message: { error: 'Cannot get followers' },
     });
   }
 };
-
-
 
 module.exports = socialController;
