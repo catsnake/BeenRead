@@ -4,41 +4,56 @@ const socialController = {};
 
 socialController.followUser = async (req, res, next) => {
   try {
-    const { userId, friendId } = req.body;
+    const { username, followUsername } = req.body;
 
-    const user = await User.findByIdAndUpdate(
+    const user = await User.findOne({ username });
+    const friend = await User.findOne({ username: followUsername });
+
+    if (!user || !friend) {
+      return next({
+        log: 'Error in userController.followUser: ',
+        message: { error: 'User or friend not found' },
+      });
+    }
+
+    const userId = user._id;
+    const friendId = friend._id;
+
+    const updatedUser = await User.findByIdAndUpdate(
       userId,
       { $push: { followedUsers: friendId } },
       { new: true }
-    ).then((user) => {
-      res.locals.user = user;
-    });
+    );
 
-    const friend = await User.findByIdAndUpdate(
+    const updatedFriend = await User.findByIdAndUpdate(
       friendId,
       { $push: { followers: userId } },
       { new: true }
-    ).then((friend) => {
-      res.locals.friend = friend;
-    });
+    );
+
+    res.locals.user = updatedUser;
+    res.locals.friend = updatedFriend;
 
     return next();
   } catch (error) {
     return next({
       log: 'Error in userController.followUser: ',
-      message: { error: 'cannot follow user' },
+      message: { error: 'Cannot follow user' },
     });
   }
 };
 
 socialController.getFollowedUsers = async (req, res, next) => {
   try {
-    const { userId } = req.body;
+    const { username } = req.body;
 
-    const user = await User.findById(userId)
-      .populate('followedUsers')
+    const user = await User.findOne({ username })
+      .populate('followedUsers', 'username')
       .then((user) => {
-        res.locals.followedUsers = user.followedUsers;
+        const followedUsernames = user.followedUsers.map(
+          (followedUser) => followedUser.username
+        );
+        res.locals.followedUsers = followedUsernames;
         return next();
       });
   } catch (error) {
@@ -51,20 +66,34 @@ socialController.getFollowedUsers = async (req, res, next) => {
 
 socialController.unfollowUser = async (req, res, next) => {
   try {
-    const { userId, friendId } = req.body;
+    const { username, friendUsername } = req.body;
 
-    const user = await User.findByIdAndUpdate(
-      userId,
+    const user = await User.findOne({ username });
+    const friend = await User.findOne({ username: friendUsername });
+
+    if (!user || !friend) {
+      return next({
+        log: 'Error in userController.unfollowUser: ',
+        message: { error: 'User or friend not found' },
+      });
+    }
+
+    const userId = user._id;
+    const friendId = friend._id;
+
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: userId },
       { $pull: { followedUsers: friendId } },
       { new: true }
-    ).then((user) => {
-      res.locals.user = user;
-      return next();
-    });
+    );
+
+    res.locals.user = updatedUser;
+
+    return next();
   } catch (error) {
     return next({
       log: 'Error in userController.unfollowUser: ',
-      message: { error: 'cannot unfollow user' },
+      message: { error: 'Cannot unfollow user' },
     });
   }
 };
@@ -74,9 +103,10 @@ socialController.getFollowers = async (req, res, next) => {
     const { userId } = req.body;
 
     const user = await User.findById(userId)
-      .populate('followers')
+      .populate('followers', 'username')
       .then((user) => {
-        res.locals.followers = user.followers;
+        const followers = user.followers.map((follower) => follower.username);
+        res.locals.followers = followers;
         return next();
       });
   } catch (error) {
@@ -86,5 +116,7 @@ socialController.getFollowers = async (req, res, next) => {
     });
   }
 };
+
+
 
 module.exports = socialController;
