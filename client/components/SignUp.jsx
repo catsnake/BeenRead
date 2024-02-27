@@ -8,7 +8,7 @@ import { useSignupMutation } from "../slices/api/userApiSlice";
 import { setCredentials } from "../slices/reducers/authSlice";
 
 const SignupPage = () => {
-  const [name, setName] = useState("");
+  const [username, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -28,7 +28,7 @@ const SignupPage = () => {
       // The promise returned by the dispatched thunk has an unwrap property which can be called to extract 
       // the payload of a fulfilled action or to throw either the error or, if available, payload created 
       // by rejectWithValue from a rejected action:
-        const res = await signup({name, email, password }).unwrap();
+        const res = await signup({username, email, password }).unwrap();
         // toast.success("Sign up successfully!");
         dispatch(setCredentials(res));
     } catch (error) {
@@ -58,7 +58,7 @@ const SignupPage = () => {
                 </label>
                 <input
                   type="text"
-                  value={name}
+                  value={username}
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5 "
                   placeholder="Code Smith"
                   required
