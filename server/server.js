@@ -1,13 +1,13 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const connectDB = require("./config/db")
-const dotenv = require('dotenv')
-const userRouter = require('./routes/userRoutes')
-const cors = require('cors')
-const aiController = require('./controllers/openAiController')
-const articleRouter = require('./routes/articleRoutes')
-
+const connectDB = require('./config/db');
+const dotenv = require('dotenv');
+const userRouter = require('./routes/userRoutes');
+const cors = require('cors');
+const aiController = require('./controllers/openAiController');
+const articleRouter = require('./routes/articleRoutes');
+const socialRouter = require('./routes/socialRoutes');
 const PORT = 3000;
 
 //use dotenv
@@ -25,12 +25,12 @@ app.use(express.static(path.join(__dirname, 'index.html')));
 //use API routers
 
 app.use('/api/user', userRouter);
+app.use('/api/social', socialRouter);
 //CHAT GPT - add to controller file to modularize
 app.get('/api/openai', aiController.getArticle, (req, res) => {
   res.status(200).send(res.locals.getArticle);
 });
-app.use('/api/article', articleRouter)
-
+app.use('/api/article', articleRouter);
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, './index.html'));
@@ -52,7 +52,6 @@ app.use((err, req, res, next) => {
   // console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj);
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);

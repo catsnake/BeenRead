@@ -22,15 +22,6 @@ const userSchema = new Schema({
   },
   followedUsers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   followers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-  // articlesRead : {
-  //     type: Array,
-  //     required: true,
-  // },
-  // amtOfArticles : {
-  //     type: Number,
-  //     required: true,
-  //     default: 0
-  // }
 });
 
 userSchema.pre('save', function (next) {
@@ -61,3 +52,13 @@ userSchema.methods.comparePassword = async function (passwordInput) {
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
+
+// articlesRead : {
+//     type: Array,
+//     required: true,
+// },
+// amtOfArticles : {
+//     type: Number,
+//     required: true,
+//     default: 0
+// }
