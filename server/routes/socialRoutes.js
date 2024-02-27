@@ -16,7 +16,7 @@ router.get(
 );
 
 router.put('/unfollowUser', socialController.unfollowUser, (req, res) => {
-  res.status(200).json(res.locals.user, res.locals.friend);
+  res.status(200).json([res.locals.user, res.locals.friend]);
 });
 
 router.get(
