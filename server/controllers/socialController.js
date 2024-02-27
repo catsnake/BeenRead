@@ -87,7 +87,14 @@ socialController.unfollowUser = async (req, res, next) => {
       { new: true }
     );
 
+    const updatedFriend = await User.findOneAndUpdate(
+      { _id: friendId },
+      { $pull: { followers: userId } },
+      { new: true }
+    );
+
     res.locals.user = updatedUser;
+    res.locals.friend = updatedFriend;
 
     return next();
   } catch (error) {
