@@ -40,4 +40,35 @@ feedController.getFollowedUsersFeedData = async (req, res, next) => {
     });
   }
 };
+
+feedController.postReaction = async (req, res, next) => {
+  try {
+    const { username, reaction } = req.body;
+
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const reactionObj = {
+      userId: user._id,
+      reaction,
+    };
+
+    const updatedUser = await User.findByIdAndUpdate(
+      user._id,
+      { $push: { dailyReactions: reactionObj } },
+      { new: true }
+    );
+
+    res.locals.updatedUser = updatedUser;
+    return next();
+  } catch (error) {
+    return next({
+      log: 'Error in feedController.postReaction: ' + error,
+      message: { error: 'Cannot post reaction' },
+    });
+  }
+};
 module.exports = feedController;
