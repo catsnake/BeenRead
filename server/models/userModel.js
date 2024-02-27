@@ -20,7 +20,8 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  friends: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  followedUsers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  followers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   // articlesRead : {
   //     type: Array,
   //     required: true,

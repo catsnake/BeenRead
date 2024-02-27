@@ -5,8 +5,8 @@ const userController = {};
 userController.signup = async (req, res, next) => {
   try {
     //these info from client
-    const{username, email, password} = req.body;
-    const newUser = await new User({username, email, password}).save();
+    const { username, email, password } = req.body;
+    const newUser = await new User({ username, email, password }).save();
 
     if (newUser) {
       res.locals.newUser = newUser;
@@ -42,51 +42,60 @@ userController.signin = async (req, res, next) => {
   }
 };
 
-userController.addFriend = async (req, res, next) => {
+userController.followUser = async (req, res, next) => {
   try {
     const { userId, friendId } = req.body;
 
     const user = await User.findByIdAndUpdate(
       userId,
-      { $push: { friends: friendId } },
+      { $push: { followedUsers: friendId } },
       { new: true }
     ).then((user) => {
       res.locals.user = user;
-      return next();
     });
+
+    const friend = await User.findByIdAndUpdate(
+      friendId,
+      { $push: { followers: userId } },
+      { new: true }
+    ).then((friend) => {
+      res.locals.friend = friend;
+    });
+
+    return next();
   } catch (error) {
     return next({
-      log: 'Error in userController.addFriend: ',
-      message: { error: 'cannot add friend' },
+      log: 'Error in userController.followUser: ',
+      message: { error: 'cannot follow user' },
     });
   }
 };
 
-userController.getFriends = async (req, res, next) => {
+userController.getFollowedUsers = async (req, res, next) => {
   try {
     const { userId } = req.body;
 
     const user = await User.findById(userId)
-      .populate('friends')
+      .populate('followedUsers')
       .then((user) => {
-        res.locals.friends = user.friends;
+        res.locals.followedUsers = user.followedUsers;
         return next();
       });
   } catch (error) {
     return next({
-      log: 'Error in userController.getFriends: ',
-      message: { error: 'cannot get friends' },
+      log: 'Error in userController.getfollowedUsers: ',
+      message: { error: 'cannot get followedUsers' },
     });
   }
 };
 
-userController.removeFriend = async (req, res, next) => {
+userController.unfollowUser = async (req, res, next) => {
   try {
     const { userId, friendId } = req.body;
 
     const user = await User.findByIdAndUpdate(
       userId,
-      { $pull: { friends: friendId } },
+      { $pull: { followedUsers: friendId } },
       { new: true }
     ).then((user) => {
       res.locals.user = user;
@@ -94,10 +103,27 @@ userController.removeFriend = async (req, res, next) => {
     });
   } catch (error) {
     return next({
-      log: 'Error in userController.removeFriend: ',
-      message: { error: 'cannot remove friend' },
+      log: 'Error in userController.unfollowUser: ',
+      message: { error: 'cannot unfollow user' },
     });
   }
 };
 
+userController.getFollowers = async (req, res, next) => {
+  try {
+    const { userId } = req.body;
+
+    const user = await User.findById(userId)
+      .populate('followers')
+      .then((user) => {
+        res.locals.followers = user.followers;
+        return next();
+      });
+  } catch (error) {
+    return next({
+      log: 'Error in userController.getFollowers: ',
+      message: { error: 'cannot get followers' },
+    });
+  }
+};
 module.exports = userController;
