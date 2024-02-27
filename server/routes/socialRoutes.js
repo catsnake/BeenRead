@@ -8,7 +8,7 @@ router.post('/followUser', socialController.followUser, (req, res) => {
 });
 
 router.get(
-  '/getFollowedUsers:username',
+  '/getFollowedUsers/:username',
   socialController.getFollowedUsers,
   (req, res) => {
     res.status(200).json(res.locals.followedUsers);
@@ -20,7 +20,7 @@ router.put('/unfollowUser', socialController.unfollowUser, (req, res) => {
 });
 
 router.get(
-  '/getFollowers:username',
+  '/getFollowers/:username',
   socialController.getFollowers,
   (req, res) => {
     res.status(200).json(res.locals.followers);
