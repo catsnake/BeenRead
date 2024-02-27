@@ -5,9 +5,8 @@ const userController = {};
 userController.signup = async (req, res, next) => {
   try {
     //these info from client
-    const { username, email, password } = req.body;
-
-    const newUser = await new User({ username, email, password }).save();
+    const{username, email, password} = req.body;
+    const newUser = await new User({username, email, password}).save();
 
     if (newUser) {
       res.locals.newUser = newUser;
