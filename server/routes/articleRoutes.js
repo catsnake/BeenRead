@@ -21,4 +21,8 @@ router.get(
   }
 );
 
+router.put( '/checkIsRead', articleController.checkIsRead, (req, res) => {
+  res.status(200).json(res.locals.findArticle)
+})
+
 module.exports = router;

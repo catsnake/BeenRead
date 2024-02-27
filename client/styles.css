@@ -1,36 +1,71 @@
 .dm-serif display-regular {
-  font-family: 'DM Serif Display', serif;
-  font-weight: 400;
-  font-style: normal;
-}
+    font-family: "DM Serif Display", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .dm-serif display-regular-italic {
+    font-family: "DM Serif Display", serif;
+    font-weight: 400;
+    font-style: italic;
+  }
 
-.dm-serif display-regular-italic {
-  font-family: 'DM Serif Display', serif;
-  font-weight: 400;
-  font-style: italic;
-}
+
+
+
 
 * {
-  background-color: rgb(246, 205, 212);
-  font-family: 'DM Serif Display', serif;
+    background-color: rgb(246, 205, 212);
+    font-family: "DM Serif Display", serif;
+
+
 }
 
-#login {
-  background-color: rgb(246, 205, 212);
-  box-shadow: 8px 8px 8px 8px rgb(198, 155, 162);
+#login{
+    background-color: rgb(246, 205, 212);
+    box-shadow: 8px 8px 8px 8px rgb(198, 155, 162);
 }
 
-#signup {
-  background-color: rgb(246, 205, 212);
-  box-shadow: 8px 8px 8px 8px rgb(198, 155, 162);
+
+#signup{
+    background-color: rgb(246, 205, 212);
+    box-shadow: 8px 8px 8px 8px rgb(198, 155, 162);
 }
-#subtitle {
-  font-size: 45px;
+#subtitle{
+    font-size: 45px;
+
 }
 
-#article {
-  border-radius: 25px;
+#article{
+    border-radius: 25px;
 }
 
-#article:hover {
+#feedbox{
+    display : grid;
+    text-align: center;
+    justify-content: center;
+    height: 650px;
+    overflow: scroll;
+    width:350px;
+    border-radius: 13px;
+    margin-bottom: 30px;
+    margin-left: 23px;
+    margin-right: 23px;
+    background-color: white;
+    padding: 20px;
 }
+
+#gimme{
+    background-color: rgb(239, 197, 204);
+    font-size: 25px;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 25px;
+    width: 175px;
+    box-shadow: 0px 0px 1px 1px rgb(0,0,0);
+}
+
+#gimme:active{
+    background-color: rgb(177, 143, 148);
+}
+
