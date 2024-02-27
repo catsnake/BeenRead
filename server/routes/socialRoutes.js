@@ -1,7 +1,7 @@
 const express = require('express');
 const socialController = require('../controllers/socialController');
 
-router = express.Router();
+const router = express.Router();
 
 router.post('/followUser', socialController.followUser, (req, res) => {
   res.status(200).json(res.locals.user);
