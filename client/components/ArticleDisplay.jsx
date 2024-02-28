@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 function ArticleDisplay() {
-  const [isArticleOpen, setIsArticleOpened] = useState(false);
   const [articleOfTheDay, setArticleOfTheDay] = useState({});
   const [articleTitle, setArticleTitle] = useState("");
   const [articleImage, setArticleImage] = useState("");
