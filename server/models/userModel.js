@@ -8,6 +8,7 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: true,
+    unique: true,
   },
 
   email: {
@@ -20,16 +21,26 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  friends: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-  // articlesRead : {
-  //     type: Array,
-  //     required: true,
-  // },
-  // amtOfArticles : {
-  //     type: Number,
-  //     required: true,
-  //     default: 0
-  // }
+  followedUsers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  followers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  readDailyArticle: { type: Boolean, default: false },
+  timeStartedReading: { type: Date, default: null },
+  timeFinishedReading: { type: Date, default: null },
+  timeSpentReading: { type: Number, default: 0 },
+  dailyStreak: { type: Number, default: 0 },
+  dailyReactions: [
+    {
+      userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+      },
+      reaction: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
 });
 
 userSchema.pre('save', function (next) {
@@ -60,3 +71,13 @@ userSchema.methods.comparePassword = async function (passwordInput) {
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
+
+// articlesRead : {
+//     type: Array,
+//     required: true,
+// },
+// amtOfArticles : {
+//     type: Number,
+//     required: true,
+//     default: 0
+// }
