@@ -33,7 +33,7 @@ function FeedItem(
           <div className="did-user-read-container">
             {
               readDailyArticle
-              ? <p>{displayName.charAt(0).toUppercase()} read the article in {timeSpentReading} minutes!</p>
+              ? <p>{displayName.charAt(0)} read the article in {timeSpentReading} minutes!</p>
               : <p>{displayName} hasn't read the article yet.</p>
             }
           </div>

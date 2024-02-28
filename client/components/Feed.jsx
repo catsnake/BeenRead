@@ -9,6 +9,7 @@ import { useSaveArticleMutation, useCheckIsReadMutation } from '../slices/api/ar
 import { Navbar } from './Navbar';
 import FeedItem from './FeedItem.jsx';
 import AuthenticatedFeedItem from './AuthenticatedFeedItem.jsx';
+import ArticleDisplay from './ArticleDisplay.jsx';
 
 function Feed() {
   // This is where our times requests from front end will be.
@@ -43,6 +44,7 @@ function Feed() {
     .then(data => {
       data.forEach(item => {
         tempFeedItems.push(<FeedItem 
+          key={'key ' + item.displayName}
           dailyReactions={item.dailyReactions}
           dailyStreak={item.dailyStreak}
           displayName={item.displayName}
@@ -51,7 +53,6 @@ function Feed() {
           timeSpentReading={item.timeSpentReading}
           />);
       });
-
       setFeedItems(tempFeedItems);
     })
     .catch(err => {
@@ -119,6 +120,7 @@ function Feed() {
           </div>
         </div>
         <div className="feed-column">
+          <ArticleDisplay />
           <div id="feedbox">
             <p>FEED</p>
             {/* authorized user feed item: */}
