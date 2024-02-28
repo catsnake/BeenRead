@@ -4,13 +4,13 @@ const feedController = {};
 
 feedController.getFollowedUsersFeedData = async (req, res, next) => {
   try {
-    const { username } = req.params;
+    const {username} = req.params;
 
-    const user = await User.findOne({ username }).populate({
+    const user = await User.findOne({username}).populate({
       path: 'followedUsers',
-      select:
-        'readDailyArticle timeStartedReading timeFinishedReading timeSpentReading dailyStreak dailyReactions',
-    });
+      select: 'username readDailyArticle timeStartedReading timeFinishedReading timeSpentReading dailyStreak dailyReactions',
+    })
+    
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
@@ -40,6 +40,7 @@ feedController.getFollowedUsersFeedData = async (req, res, next) => {
     });
   }
 };
+
 
 feedController.postReaction = async (req, res, next) => {
   try {

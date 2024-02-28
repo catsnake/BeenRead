@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'index.html')));
 
 app.use('/api/user', userRouter);
 app.use('/api/social', socialRouter);
-app.use('api/feed', feedRouter);
+app.use('/api/feed', feedRouter);
 //CHAT GPT - add to controller file to modularize
 app.get('/api/openai', aiController.getArticle, (req, res) => {
   res.status(200).send(res.locals.getArticle);
