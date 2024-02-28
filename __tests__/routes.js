@@ -131,8 +131,8 @@ describe('/sign in', () => {
 
     const res1 = await request(server).post(URL+'/signin').send({ email: testUser.email });
     console.log(res1)
-    expect(res1.status).toEqual(500);
-    expect(res1.body.message.error).toEqual('cannot sign in')
+    expect(res1.status).toEqual(404);
+    expect(res1.body).toEqual('Invalid email or password')
 
     const res2 = await request(server).post(URL+'/signin').send({ password: testUser.password });
     console.log(res2)
