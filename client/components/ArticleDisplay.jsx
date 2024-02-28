@@ -1,44 +1,41 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
 function ArticleDisplay() {
   const [articleOfTheDay, setArticleOfTheDay] = useState({});
-  const [articleTitle, setArticleTitle] = useState('');
-
-  let tempArticleTitle = '';
-  let tempArticleImage = '';
+  const [articleTitle, setArticleTitle] = useState("");
+  const [articleImage, setArticleImage] = useState("");
+  const [articleDescription, setArticleDescription] = useState("");
 
   useEffect(() => {
-    console.log('use effect hit');
-    fetch('http://localhost:3000/api/article/articleOfTheDay')
-        .then(response => response.json())
-        .then(data => {
-            tempArticleImage = data.article.thumbnail.source;
-            setArticleOfTheDay(data);
-            setArticleTitle(data.title);
-            tempArticleTitle = data.title;
-        })
-        .catch(err => {
-            console.log('Error fetching article of the day: ', err);
-        });
-
-
+    console.log("use effect hit");
+    fetch("http://localhost:3000/api/article/articleOfTheDay")
+      .then((response) => response.json())
+      .then((data) => {
+        setArticleOfTheDay(data);
+        setArticleTitle(data.title);
+        setArticleImage(data.article.thumbnail.source);
+        setArticleDescription(data.article.description);
+      })
+      .catch((err) => {
+        console.log("Error fetching article of the day: ", err);
+      });
   }, []);
 
-  useEffect(() => {
-     console.log('thumbnail: ', tempArticleImage);
-    const tempAotd = articleOfTheDay.article;
-    const tempThumbnail = tempAotd;
-  }, [articleOfTheDay]);
+  const backgroundImageStyle = {
+    backgroundImage: `url(${articleImage})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    boxShadow: "inset 0 0 20px #ffffff",
+    color: "black",
+  };
 
-//   console.log('AOTD: ', articleOfTheDay);
-  console.log('article title', articleTitle)
-    
   return (
-    <div className="article-display-container">
-        <p className='aotd-body-text'>Article of the Day</p>
-        <h3 className='aotd-header'>{articleTitle.replace('_', ' ')}</h3>
+    <div className="article-display-container" style={backgroundImageStyle}>
+      <p className="aotd-body-text">Article of the Day</p>
+      <h3 className="aotd-header">{articleTitle.replace("_", " ")}</h3>
+      <p className="aotd-description">{articleDescription}</p>
     </div>
-  )
+  );
 }
 
 export default ArticleDisplay;
