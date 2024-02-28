@@ -5,11 +5,21 @@ const userController = {};
 userController.signup = async (req, res, next) => {
   try {
     //these info from client
-    const { username, email, password } = req.body;
+    const { username, displayName, email, password } = req.body;
     const newUser = await new User({ username, email, password }).save();
 
-    if (newUser) {
-      res.locals.newUser = newUser;
+    const feedObj = {
+      displayName: displayName || username,
+    };
+
+    const updatedUser = await User.findByIdAndUpdate(
+      newUser._id,
+      { feed: feedObj },
+      { new: true },
+    );
+
+    if (updatedUser) {
+      res.locals.newUser = updatedUser;
       return next();
     } else {
       res.status(403).json('Cannot create new user!');
