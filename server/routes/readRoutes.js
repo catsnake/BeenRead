@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get(
   '/readDailyUser/:username',
-  readController.readDailyUser,
+  readController.readDailyArticle,
   (req, res) => {
     res.status(200).json(res.locals.user);
   }
