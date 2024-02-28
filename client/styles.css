@@ -233,7 +233,7 @@ p {
     color: black;
     font-weight: 300;
     width: 85%;
-    padding: 25px 50px;
+    padding: 25px 30px;
     border-radius: 40px;
     background: #F1F1F1;
     background: linear-gradient(135deg, #F1F1F1, #ECECEC);
@@ -245,8 +245,35 @@ p {
     align-items: center;
 }
 
+.reactions-container {
+    width: 100%;
+    border-top: 1px solid lightgray;
+    margin-top: 10px;
+    padding-top: 5px;
+    display: flex;
+    align-items: center;
+}
+
 .user-info {
     display: flex;
+}
+
+.feed-item-email-text {
+    color: rgb(132, 132, 132);
+    font-size: 14px;
+    margin-left: 7px;
+}
+
+.reaction-picker {
+    position: absolute;
+    top: -50px;
+}
+
+.reaction-btn {
+    width: 20px;
+    height: 20px;
+    margin-top: 5px;
+    cursor: pointer;
 }
 
 #gimme{
