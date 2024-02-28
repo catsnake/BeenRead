@@ -4,7 +4,7 @@ const readController = require('../controllers/readController');
 const router = express.Router();
 
 router.get(
-  '/readDailyUser/:username',
+  '/readDailyArticle/:username',
   readController.readDailyArticle,
   (req, res) => {
     res.status(200).json(res.locals.user);
@@ -31,7 +31,7 @@ router.get(
   }
 );
 
-router.get('/updateDailyReset', readController.updateDailyReset, (req, res) => {
+router.get('/dailyReset', readController.dailyReset, (req, res) => {
   res.status(200).json(res.locals.users);
 });
 
