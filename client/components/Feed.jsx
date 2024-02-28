@@ -9,6 +9,7 @@ import {
 import { Navbar } from './Navbar';
 import FeedItem from './FeedItem.jsx';
 import AuthenticatedFeedItem from './AuthenticatedFeedItem.jsx';
+import ArticleDisplay from './ArticleDisplay.jsx';
 
 function Feed() {
   // This is where our times requests from front end will be.
@@ -45,7 +46,8 @@ function Feed() {
         data.forEach((item) => {
           tempFeedItems.push(
             <FeedItem
-              dailyReactions={item.dailyReactions}
+              key={'key ' + item.displayName}
+          dailyReactions={item.dailyReactions}
               dailyStreak={item.dailyStreak}
               displayName={item.displayName}
               readDailyArticle={item.readDailyArticle}
@@ -56,7 +58,6 @@ function Feed() {
             />
           );
         });
-
         setFeedItems(tempFeedItems);
       })
       .catch((err) => {
@@ -122,6 +123,7 @@ function Feed() {
           </div>
         </div>
         <div className="feed-column">
+          <ArticleDisplay />
           <div id="feedbox">
             <p>FEED</p>
             {/* authorized user feed item: */}
