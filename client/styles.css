@@ -258,6 +258,12 @@ p {
     display: flex;
 }
 
+.feed-item-email-text {
+    color: rgb(132, 132, 132);
+    font-size: 14px;
+    margin-left: 7px;
+}
+
 .reaction-picker {
     position: absolute;
     top: -50px;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactionPicker from './ReactionPicker';
 
-function FeedItem() {
+function FeedItem({ username, email }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleReactionBtnClick = () => {
@@ -14,8 +14,7 @@ function FeedItem() {
       <div className="feed-item-container">
         <div className="feed-item-header">
           <div className="user-info">
-            <p>icon</p>
-            <p>fname lname</p>
+            <p><span style={{fontWeight: 400}}>{username}</span> <span className='feed-item-email-text'>{email}</span></p>
           </div>
           <div className="feed-item-timestamp">
             <p>7:30pm</p>
@@ -23,7 +22,7 @@ function FeedItem() {
         </div>
         <div className="feed-item-content">
           <div className="did-user-read-container">
-            <p>did user read</p>
+            <p>haven't read</p>
           </div>
           <div className="streak-container">
             <p>user streak</p>

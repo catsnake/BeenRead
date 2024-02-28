@@ -25,6 +25,21 @@ function Feed() {
   // const navigate = useNavigate();
 
   const userData = useSelector((state) => state.auth);
+  // const feedData = useSelector((state) => state.feed);
+  const dispatch = useDispatch();
+
+  // Get current authorized user data:
+  const username = userData.userData.username;
+  const email = userData.userData.email;
+
+  // Get current article data:
+  // console.log('feed data: ', feedData);
+
+  // initialize authenticated user's feed item component:
+  // useEffect(() => {
+    
+  // }, []);
+
   // // console.log(userData.userData._id)
 
   // const [savedArticle] = useSaveArticleMutation();
@@ -70,6 +85,7 @@ function Feed() {
   //   checkIsRead({ articleId });
   // };
 
+
   return (
     <div>
       <div />
@@ -82,7 +98,8 @@ function Feed() {
         <div className="feed-column">
           <div id="feedbox">
             <p>FEED</p>
-            <FeedItem />
+            {/* authorized user feed item: */}
+            <FeedItem username={username} email={email} />
             {/* {myFeed} */}
           </div>
           {/* {disValue && <button onClick={readClickHandler}>Read</button>} */}
