@@ -38,10 +38,6 @@ const Authenticator = () => {
       dispatch(setCredentials(res));
     console.log('log')
     } catch (error) {
-      //error?.data?.error: from server
-      //error.data: from client
-      // toast.error(error.data.error || error.data)
-      // console.log(error.data.error || error.data);
       console.log(error)
     }
   };
@@ -82,7 +78,8 @@ const Authenticator = () => {
           type="submit"
           class="">Already have an account? Sign 
         </button> */}
-        <p className="body-text">Already have an account? <span><Link to='/signin' className="general-link">Sign in now</Link></span>.</p>
+        {/* <p className="body-text">Already have an account? <span><Link to='/signin' className="general-link">Sign in now</Link></span>.</p> */}
+       <p className='general-link' onClick={submitHandler}>Sign In</p>
         <div class=""><p className="body-text inline">Not registered? </p><span><Link to="/signup" class="general-link">Create account</Link></span>
         </div>
       </form>
