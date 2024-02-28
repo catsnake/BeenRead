@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactionPicker from './ReactionPicker';
 
+
 function FeedItem({
   dailyReactions,
   dailyStreak,
@@ -10,15 +11,28 @@ function FeedItem({
   timeSpentReading,
   email,
   user,
+  userId,
 }) {
   const [likes, setLikes] = useState(0);
   const [liked, setLiked] = useState(false);
+  
   useEffect(() => {
     setLikes(dailyReactions.length);
   }, [dailyReactions]);
 
+  useEffect(() => {
+    dailyReactions.forEach((reaction) => {
+      if (reaction.userId === userId) {
+        setLiked(true);
+      }
+    });
+  }, []);
+
+
   const handleClick = () => {
     console.log('likes:', likes);
+    console.log(dailyReactions)
+    console.log('userId:', userId);
     if (!liked) {
       fetch('http://localhost:3000/api/feed/post', {
         method: 'POST',
