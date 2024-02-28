@@ -5,9 +5,9 @@ const wikipediaController = require('../controllers/wikipediaController');
 
 const router = express.Router();
 
-router.post(
+router.get(
   '/saveArticle',
-  openAiController.getArticle,
+  wikipediaController.getArticleOfTheDay,
   articleController.saveArticle,
   (req, res) => {
     res.status(201).json(res.locals.savedArticle);

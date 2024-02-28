@@ -128,52 +128,5 @@ readController.updateTimeSpent = async (req, res, next) => {
 //   }
 // };
 
-readController.dailyReset = async (req, res, next) => {
-  try {
-    const users = await User.find();
-    if (!users) {
-      return next({
-        log: 'Error in readController.dailyReset: ',
-        message: { error: 'No users found' },
-      });
-    }
-    res.locals.users = {};
-
-    for (let user of users) {
-      let userId = user._id;
-      let readDailyArticle = user.feed.readDailyArticle;
-      let dailyStreak = user.feed.dailyStreak;
-
-      if (!readDailyArticle && dailyStreak > 0) {
-        await User.findByIdAndUpdate(userId, {
-          $set: { 'feed.dailyStreak': 0 },
-        });
-      }
-
-      let updatedUser = await User.findByIdAndUpdate(
-        userId,
-        {
-          $set: {
-            'feed.readDailyArticle': false,
-            'feed.timeStartedReading': null, 
-            'feed.timeFinishedReading': null,
-            'feed.timeSpentReading': 0,
-            'feed.dailyReactions': [],
-          },
-        },
-        { new: true }
-      );
-
-      res.locals.users[userId] = updatedUser;
-    }
-
-    return next();
-  } catch (error) {
-    return next({
-      log: 'Error in readController.dailyReset: ',
-      message: { error: 'Cannot reset daily streak' },
-    });
-  }
-};
 
 module.exports = readController;

@@ -5,17 +5,9 @@ const articleController = {};
 
 articleController.saveArticle = async (req, res, next) => {
   try {
-    const { userId } = req.body;
-
-    // check userId exist?
-    const findUser = await User.findById({ _id: userId }).exec();
-
-    if (findUser) {
       // create and save new article
-      const savedArticle = await new Article({
-        user: findUser._id,
-        content: res.locals.getArticle,
-      }).save();
+      const {title,description,article} = res.locals.articleOfTheDay;
+      const savedArticle = await new Article({title,description,article}).save();
 
       // check
       if (savedArticle) {
@@ -25,9 +17,7 @@ articleController.saveArticle = async (req, res, next) => {
         return next();
       }
       res.status(403).json('Cannot save article!');
-    } else {
-      res.status(404).json('User not found!');
-    }
+
   } catch (error) {
     return next({
       log: 'Error in articleController.saveArticle',
