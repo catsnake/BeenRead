@@ -13,6 +13,7 @@ const PORT = 3000;
 
 //use dotenv
 dotenv.config();
+console.log(process.env.MONGO_URL);
 app.use(express.json());
 
 //allows the server to interact with website
@@ -21,7 +22,7 @@ app.use(cors());
 //connect database
 connectDB();
 
-app.use(express.static(path.join(__dirname, 'index.html')));
+app.use(express.static(path.join(__dirname, '../index.html')));
 
 //use API routers
 
@@ -35,7 +36,7 @@ app.get('/api/openai', aiController.getArticle, (req, res) => {
 app.use('/api/article', articleRouter);
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, './index.html'));
+  res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 //error handlers for unknown page
