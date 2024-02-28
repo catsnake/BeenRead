@@ -26,6 +26,8 @@ articleController.saveArticle = async (req, res, next) => {
   }
 };
 
+articleController.getArticle = async (req, res, next) => {}
+
 articleController.generateArticleHistory = async (req, res, next) => {
   try {
     const userId = req.params.id;
