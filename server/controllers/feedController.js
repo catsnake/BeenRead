@@ -4,13 +4,12 @@ const feedController = {};
 
 feedController.getFollowedUsersFeedData = async (req, res, next) => {
   try {
-    const {username} = req.params;
+    const { username } = req.params;
 
-    const user = await User.findOne({username}).populate({
+    const user = await User.findOne({ username }).populate({
       path: 'followedUsers',
       select: 'username readDailyArticle timeStartedReading timeFinishedReading timeSpentReading dailyStreak dailyReactions',
-    })
-    
+    });
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
@@ -35,12 +34,11 @@ feedController.getFollowedUsersFeedData = async (req, res, next) => {
     return next();
   } catch (error) {
     return next({
-      log: 'Error in feedController.getFollowedUsersFeedData: ' + error,
+      log: `Error in feedController.getFollowedUsersFeedData: ${error}`,
       message: { error: 'Cannot get followed users feed data' },
     });
   }
 };
-
 
 feedController.postReaction = async (req, res, next) => {
   try {
@@ -61,14 +59,14 @@ feedController.postReaction = async (req, res, next) => {
     const updatedUser = await User.findByIdAndUpdate(
       postUser._id,
       { $push: { dailyReactions: reactionObj } },
-      { new: true }
+      { new: true },
     );
 
     res.locals.updatedUser = updatedUser;
     return next();
   } catch (error) {
     return next({
-      log: 'Error in feedController.postReaction: ' + error,
+      log: `Error in feedController.postReaction: ${error}`,
       message: { error: 'Cannot post reaction' },
     });
   }
