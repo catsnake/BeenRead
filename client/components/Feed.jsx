@@ -10,6 +10,7 @@ import { Navbar } from './Navbar';
 import FeedItem from './FeedItem.jsx';
 import AuthenticatedFeedItem from './AuthenticatedFeedItem.jsx';
 import ArticleDisplay from './ArticleDisplay.jsx';
+import ArticleModal from './ArticleModal.jsx';
 
 function Feed() {
   // This is where our times requests from front end will be.
@@ -25,7 +26,7 @@ function Feed() {
 
   // const dispatch = useDispatch();
   // const navigate = useNavigate();
-
+  const [isModalOpen, setIsModalOpened] = useState(false);
   const [feedItems, setFeedItems] = useState([]);
 
   const userData = useSelector((state) => state.auth);
@@ -60,6 +61,11 @@ function Feed() {
       console.log('there was an error in feed: ', err);
     });
   }, []);
+
+  const handleModalToggle = () => {
+    console.log('handle modal toggle hit', isModalOpen)
+    setIsModalOpened(!isModalOpen);
+  }
 
   // Get current article data:
   // console.log('feed data: ', feedData);
@@ -121,7 +127,12 @@ function Feed() {
           </div>
         </div>
         <div className="feed-column">
-          <ArticleDisplay />
+          <div className='article-display-outer-container' onClick={handleModalToggle}>
+            <ArticleDisplay />
+          </div>
+          {
+            isModalOpen && <ArticleModal isModalOpen={isModalOpen} setIsModalOpened={setIsModalOpened} />
+          }
           <div id="feedbox">
             <p>FEED</p>
             {/* authorized user feed item: */}
@@ -131,11 +142,6 @@ function Feed() {
             }
           </div>
           {/* {disValue && <button onClick={readClickHandler}>Read</button>} */}
-          <button
-            id="gimme"
-              // disabled={disValue}
-              // onClick={handleClick}
-            className="">Button</button>
         </div>
       </div>
     </div>

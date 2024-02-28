@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
 function ArticleDisplay() {
-  const [isArticleOpen, setIsArticleOpened] = useState(false);
   const [articleOfTheDay, setArticleOfTheDay] = useState({});
   const [articleTitle, setArticleTitle] = useState('');
 
@@ -35,7 +34,7 @@ function ArticleDisplay() {
   console.log('article title', articleTitle)
     
   return (
-    <div className="article-display-container" >
+    <div className="article-display-container">
         <p className='aotd-body-text'>Article of the Day</p>
         <h3 className='aotd-header'>{articleTitle.replace('_', ' ')}</h3>
     </div>
