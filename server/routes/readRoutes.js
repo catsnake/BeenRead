@@ -31,8 +31,8 @@ router.post('/updateTimeSpent', readController.updateTimeSpent, (req, res) => {
 //   }
 // );
 
-router.patch('/dailyReset', readController.dailyReset, (req, res) => {
-  res.status(200).json(res.locals.users);
-});
+// router.patch('/dailyReset', readController.dailyReset, (req, res) => {
+//   res.status(200).json(res.locals.users);
+// });
 
 module.exports = router;
