@@ -10,7 +10,7 @@ router.get(
   feedController.getFollowedUsersFeedData,
   (req, res) => {
     res.status(200).json(res.locals.followedUsersData);
-  }
+  },
 );
 
 router.post('/post', feedController.postReaction, (req, res) => {
