@@ -8,7 +8,7 @@ feedController.getFollowedUsersFeedData = async (req, res, next) => {
 
     const user = await User.findOne({ username }).populate({
       path: 'followedUsers',
-      select: 'username readDailyArticle timeStartedReading timeFinishedReading timeSpentReading dailyStreak dailyReactions',
+      select: 'feed',
     });
 
     if (!user) {
@@ -21,14 +21,9 @@ feedController.getFollowedUsersFeedData = async (req, res, next) => {
       return next();
     }
 
-    const followedUsersData = user.followedUsers.map((followedUser) => ({
-      readDailyArticle: followedUser.readDailyArticle,
-      timeStartedReading: followedUser.timeStartedReading,
-      timeFinishedReading: followedUser.timeFinishedReading,
-      timeSpentReading: followedUser.timeSpentReading,
-      dailyStreak: followedUser.dailyStreak,
-      dailyReactions: followedUser.dailyReactions,
-    }));
+    const followedUsersData = user.followedUsers.map(
+      (followedUser) => followedUser.feed
+    );
 
     res.locals.followedUsersData = followedUsersData;
     return next();
@@ -41,34 +36,34 @@ feedController.getFollowedUsersFeedData = async (req, res, next) => {
 };
 
 feedController.postReaction = async (req, res, next) => {
-  try {
-    const { username, postUsername, reaction } = req.body;
+    try {
+        const { username, postUsername, reaction } = req.body;
 
-    const user = await User.findOne({ username });
-    const postUser = await User.findOne({ username: postUsername });
+        const user = await User.findOne({ username });
+        const postUser = await User.findOne({ username: postUsername });
 
-    if (!user || !postUser) {
-      return res.status(404).json({ error: 'User not found' });
+        if (!user || !postUser) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        const reactionObj = {
+            userId: user._id,
+            reaction,
+        };
+
+        const updatedUser = await User.findByIdAndUpdate(
+            postUser._id,
+            { $push: { 'feed.dailyReactions': reactionObj } },
+            { new: true }
+        );
+
+        res.locals.updatedUser = updatedUser;
+        return next();
+    } catch (error) {
+        return next({
+            log: `Error in feedController.postReaction: ${error}`,
+            message: { error: 'Cannot post reaction' },
+        });
     }
-
-    const reactionObj = {
-      userId: user._id,
-      reaction,
-    };
-
-    const updatedUser = await User.findByIdAndUpdate(
-      postUser._id,
-      { $push: { dailyReactions: reactionObj } },
-      { new: true },
-    );
-
-    res.locals.updatedUser = updatedUser;
-    return next();
-  } catch (error) {
-    return next({
-      log: `Error in feedController.postReaction: ${error}`,
-      message: { error: 'Cannot post reaction' },
-    });
-  }
 };
 module.exports = feedController;

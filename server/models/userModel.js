@@ -23,24 +23,27 @@ const userSchema = new Schema({
   },
   followedUsers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   followers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-  readDailyArticle: { type: Boolean, default: false },
-  timeStartedReading: { type: Date, default: null },
-  timeFinishedReading: { type: Date, default: null },
-  timeSpentReading: { type: Number, default: 0 },
-  dailyStreak: { type: Number, default: 0 },
-  dailyReactions: [
-    {
-      userId: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
+  feed: {
+    displayName: { type: String, default: null },
+    readDailyArticle: { type: Boolean, default: false },
+    timeStartedReading: { type: Date, default: null },
+    timeFinishedReading: { type: Date, default: null },
+    timeSpentReading: { type: Number, default: 0 },
+    dailyStreak: { type: Number, default: 0 },
+    dailyReactions: [
+      {
+        userId: {
+          type: Schema.Types.ObjectId,
+          ref: 'User',
+          required: true,
+        },
+        reaction: {
+          type: String,
+          required: true,
+        },
       },
-      reaction: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
+    ],
+  },
 });
 
 userSchema.pre('save', function (next) {
