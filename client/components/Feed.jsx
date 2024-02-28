@@ -1,11 +1,11 @@
-import {
-  useNavigate,
-  Routes,
-} from 'react-router-dom';
+import { useNavigate, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState, Component } from 'react';
 import { logout } from '../slices/reducers/authSlice';
-import { useSaveArticleMutation, useCheckIsReadMutation } from '../slices/api/articleSlice';
+import {
+  useSaveArticleMutation,
+  useCheckIsReadMutation,
+} from '../slices/api/articleSlice';
 import { Navbar } from './Navbar';
 import FeedItem from './FeedItem.jsx';
 import AuthenticatedFeedItem from './AuthenticatedFeedItem.jsx';
@@ -26,7 +26,7 @@ function Feed() {
   // const navigate = useNavigate();
 
   const [feedItems, setFeedItems] = useState([]);
-
+  // const [userDB, setUserDB] = useState({});
   const userData = useSelector((state) => state.auth);
   console.log('user data: ', userData);
   // const dispatch = useDispatch();
@@ -34,35 +34,38 @@ function Feed() {
   // Get current authorized user data:
   const username = userData.userData.username;
   const email = userData.userData.email;
+  const userId = userData.userData._id;
 
   useEffect(() => {
     const tempFeedItems = [];
     // console.log('username: ', username);
     fetch(`http://localhost:3000/api/feed/getFeed/${username}`)
-    .then(response => response.json())
-    .then(data => {
-      data.forEach(item => {
-        tempFeedItems.push(<FeedItem 
-          dailyReactions={item.dailyReactions}
-          dailyStreak={item.dailyStreak}
-          displayName={item.displayName}
-          readDailyArticle={item.readDailyArticle}
-          timeFinishedReading={item.timeFinishedReading}
-          timeSpentReading={item.timeSpentReading}
-          user={username}
-          />);
-      });
+      .then((response) => response.json())
+      .then((data) => {
+        data.forEach((item) => {
+          tempFeedItems.push(
+            <FeedItem
+              dailyReactions={item.dailyReactions}
+              dailyStreak={item.dailyStreak}
+              displayName={item.displayName}
+              readDailyArticle={item.readDailyArticle}
+              timeFinishedReading={item.timeFinishedReading}
+              timeSpentReading={item.timeSpentReading}
+              user={username}
+              userId={userId}
+            />
+          );
+        });
 
-      setFeedItems(tempFeedItems);
-    })
-    .catch(err => {
-      console.log('there was an error in feed: ', err);
-    });
+        setFeedItems(tempFeedItems);
+      })
+      .catch((err) => {
+        console.log('there was an error in feed: ', err);
+      });
   }, []);
 
   // Get current article data:
   // console.log('feed data: ', feedData);
-
 
   // // console.log(userData.userData._id)
 
@@ -109,7 +112,6 @@ function Feed() {
   //   checkIsRead({ articleId });
   // };
 
-
   return (
     <div>
       <div />
@@ -124,16 +126,17 @@ function Feed() {
             <p>FEED</p>
             {/* authorized user feed item: */}
             <AuthenticatedFeedItem displayName={username} email={email} />
-            {
-              feedItems
-            }
+            {feedItems}
           </div>
           {/* {disValue && <button onClick={readClickHandler}>Read</button>} */}
           <button
             id="gimme"
-              // disabled={disValue}
-              // onClick={handleClick}
-            className="">Button</button>
+            // disabled={disValue}
+            // onClick={handleClick}
+            className=""
+          >
+            Button
+          </button>
         </div>
       </div>
     </div>
