@@ -11,6 +11,7 @@ const articleRouter = require('./routes/articleRoutes');
 const socialRouter = require('./routes/socialRoutes');
 const feedRouter = require('./routes/feedRoutes');
 const readRouter = require('./routes/readRoutes');
+const dailyReset = require('./dailyReset')
 const PORT = 3000;
 
 // use dotenv
@@ -60,5 +61,11 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);
 });
+
+// checks every five minutes if midnight just passed, if so runs dailyReset
+setInterval(() =>{
+  const currentTime = new Date(Date.now())
+  if (currentTime.getHours() === 0 && currentTime.getMinutes() < 6) dailyReset()
+}, 300000)
 
 module.exports = app;
