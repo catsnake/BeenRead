@@ -21,4 +21,12 @@ router.post('/signin', userController.signin, (req, res) => {
   //   return res.redirect("/");
 });
 
+router.get('/:username', userController.getUser, (req, res) => {
+  res.status(200).json({
+    _id: res.locals.user._id,
+    username: res.locals.user.username,
+    email: res.locals.user.email,
+  });
+});
+
 module.exports = router;
