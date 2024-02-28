@@ -25,6 +25,8 @@ feedController.getFollowedUsersFeedData = async (req, res, next) => {
       (followedUser) => followedUser.feed
     );
 
+    console.log('logging followed users data: ', followedUsersData);
+
     res.locals.followedUsersData = followedUsersData;
     return next();
   } catch (error) {
