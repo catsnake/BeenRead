@@ -23,13 +23,13 @@ router.post('/updateTimeSpent', readController.updateTimeSpent, (req, res) => {
   res.status(200).json(res.locals.user);
 });
 
-router.patch(
-  '/updateDailyStreak/:username',
-  readController.updateDailyStreak,
-  (req, res) => {
-    res.status(200).json(res.locals.user);
-  }
-);
+// router.patch(
+//   '/updateDailyStreak/:username',
+//   readController.updateDailyStreak,
+//   (req, res) => {
+//     res.status(200).json(res.locals.user);
+//   }
+// );
 
 router.patch('/dailyReset', readController.dailyReset, (req, res) => {
   res.status(200).json(res.locals.users);

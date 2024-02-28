@@ -16,10 +16,13 @@ readController.readDailyArticle = async (req, res, next) => {
     }
 
     const userId = user._id;
+    const newStreak = user.feed.dailyStreak + 1;
 
     const updatedUser = await User.findByIdAndUpdate(
       userId,
-      { $set: { 'feed.readDailyArticle': true } },
+      {
+        $set: { 'feed.readDailyArticle': true, 'feed.dailyStreak': newStreak },
+      },
       { new: true }
     );
 
@@ -94,36 +97,36 @@ readController.updateTimeSpent = async (req, res, next) => {
   }
 };
 
-readController.updateDailyStreak = async (req, res, next) => {
-  try {
-    const { username } = req.params;
-    const user = await User.findOne({ username });
-    if (!user) {
-      return next({
-        log: 'Error in readController.updateDailyStreak: ',
-        message: { error: 'User not found' },
-      });
-    }
+// readController.updateDailyStreak = async (req, res, next) => {
+//   try {
+//     const { username } = req.params;
+//     const user = await User.findOne({ username });
+//     if (!user) {
+//       return next({
+//         log: 'Error in readController.updateDailyStreak: ',
+//         message: { error: 'User not found' },
+//       });
+//     }
 
-    const userId = user._id;
-    const newStreak = user.feed.dailyStreak + 1;
+//     const userId = user._id;
+//     const newStreak = user.feed.dailyStreak + 1;
 
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      { $set: { 'feed.dailyStreak': newStreak } },
-      { new: true }
-    );
+//     const updatedUser = await User.findByIdAndUpdate(
+//       userId,
+//       { $set: { 'feed.dailyStreak': newStreak } },
+//       { new: true }
+//     );
 
-    res.locals.user = updatedUser;
+//     res.locals.user = updatedUser;
 
-    return next();
-  } catch (error) {
-    return next({
-      log: 'Error in readController.updateDailyStreak: ',
-      message: { error: 'Cannot update daily streak' },
-    });
-  }
-};
+//     return next();
+//   } catch (error) {
+//     return next({
+//       log: 'Error in readController.updateDailyStreak: ',
+//       message: { error: 'Cannot update daily streak' },
+//     });
+//   }
+// };
 
 readController.dailyReset = async (req, res, next) => {
   try {
