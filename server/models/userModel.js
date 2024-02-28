@@ -26,7 +26,6 @@ const userSchema = new Schema({
   feed: {
     displayName: { type: String, default: null },
     readDailyArticle: { type: Boolean, default: false },
-    timeStartedReading: { type: Date, default: null },
     timeFinishedReading: { type: Date, default: null },
     timeSpentReading: { type: Number, default: 0 },
     dailyStreak: { type: Number, default: 0 },
