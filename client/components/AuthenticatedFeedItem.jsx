@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
 import ReactionPicker from './ReactionPicker';
 
-function FeedItem(
+function AuthenticatedFeedItem(
   { 
-    dailyReactions, 
-    dailyStreak, 
     displayName, 
-    readDailyArticle, 
-    timeFinishedReading, 
-    timeSpentReading,
     email
   }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,11 +26,7 @@ function FeedItem(
         </div>
         <div className="feed-item-content">
           <div className="did-user-read-container">
-            {
-              readDailyArticle
-              ? <p>{displayName.charAt(0).toUppercase()} read the article in {timeSpentReading} minutes!</p>
-              : <p>{displayName} hasn't read the article yet.</p>
-            }
+            <p>haven't read</p>
           </div>
           <div className="streak-container">
             <p>user streak</p>
@@ -55,4 +46,4 @@ function FeedItem(
   );
 }
 
-export default FeedItem;
+export default AuthenticatedFeedItem;
