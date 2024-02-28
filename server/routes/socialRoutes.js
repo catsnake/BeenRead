@@ -12,7 +12,7 @@ router.get(
   socialController.getFollowedUsers,
   (req, res) => {
     res.status(200).json(res.locals.followedUsers);
-  }
+  },
 );
 
 router.put('/unfollowUser', socialController.unfollowUser, (req, res) => {
@@ -24,7 +24,7 @@ router.get(
   socialController.getFollowers,
   (req, res) => {
     res.status(200).json(res.locals.followers);
-  }
+  },
 );
 
 module.exports = router;
