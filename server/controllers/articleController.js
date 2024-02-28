@@ -26,7 +26,22 @@ articleController.saveArticle = async (req, res, next) => {
   }
 };
 
-articleController.getArticle = async (req, res, next) => {}
+articleController.getArticle = async (req, res, next) => {
+  try {
+    const mostRecentArticle = await Article.findOne().sort({ createdAt: -1 }).exec();
+
+    if (mostRecentArticle) {
+      res.locals.mostRecentArticle = mostRecentArticle;
+      return next();
+    }
+    res.status(404).json('No articles found!');
+  } catch (error) {
+    return next({
+      log: 'Error in articleController.getArticle',
+      message: 'Cannot get the most recent article!',
+    });
+  }
+};
 
 articleController.generateArticleHistory = async (req, res, next) => {
   try {

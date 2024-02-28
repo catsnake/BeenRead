@@ -5,21 +5,16 @@ const wikipediaController = require('../controllers/wikipediaController');
 
 const router = express.Router();
 
-router.get(
-  '/saveArticle',
-  wikipediaController.getArticleOfTheDay,
-  articleController.saveArticle,
-  (req, res) => {
-    res.status(201).json(res.locals.savedArticle);
-  },
-);
+router.get('/getDailyArticle', articleController.getArticle, (req, res) => {
+  res.status(201).json(res.locals.mostRecentArticle);
+});
 
 router.get(
   '/generateArticleHistory/:id',
   articleController.generateArticleHistory,
   (req, res) => {
     res.status(200).json(res.locals.generateArticleHistory);
-  },
+  }
 );
 
 router.put('/checkIsRead', articleController.checkIsRead, (req, res) => {
@@ -31,7 +26,7 @@ router.get(
   wikipediaController.getArticleOfTheDay,
   (req, res) => {
     res.status(200).json(res.locals.articleOfTheDay);
-  },
+  }
 );
 
 module.exports = router;

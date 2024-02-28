@@ -9,9 +9,10 @@ function ArticleDisplay() {
 
   useEffect(() => {
     console.log("use effect hit");
-    fetch("http://localhost:3000/api/article/articleOfTheDay")
+    fetch("http://localhost:3000/api/article/getDailyArticle")
       .then((response) => response.json())
       .then((data) => {
+        console.log("data: ", data);
         setArticleOfTheDay(data);
         setArticleTitle(data.title);
         setArticleImage(data.article.thumbnail.source);
