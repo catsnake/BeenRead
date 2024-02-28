@@ -36,6 +36,8 @@ userController.signin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
+    if(!password) res.status(404).json('Invalid email or password');
+
     const user = await User.findOne({ email }).exec();
 
     if (user && (await user.comparePassword(password))) {

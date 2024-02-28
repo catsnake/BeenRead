@@ -51,6 +51,7 @@ function Feed() {
           readDailyArticle={item.readDailyArticle}
           timeFinishedReading={item.timeFinishedReading}
           timeSpentReading={item.timeSpentReading}
+          user={username}
           />);
       });
       setFeedItems(tempFeedItems);
