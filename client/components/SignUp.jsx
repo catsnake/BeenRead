@@ -40,14 +40,14 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="authenticator-wrapper">
+    <div className="signup-wrapper">
       <section id= "signup">
         <div className="login-container">
           <h1 className="sign-in-text">
             Sign Up
           </h1>
 
-          <form onSubmit={submitHandler} className="space-y-6">
+          <form onSubmit={submitHandler} className="">
             <div>
               <label
                 // for="email"
@@ -92,15 +92,6 @@ const SignupPage = () => {
               />
             </div>
 
-            {/* <div className="flex items-center justify-between">
-              <div className="flex items-start">
-                
-                <div className="ml-3 text-sm">
-                  
-                </div>
-              </div>
-            </div> */}
-
             <div className="sign-up-btn-container">
               <button type="submit" className="sign-up-btn">Sign up</button>
             </div>
@@ -109,7 +100,7 @@ const SignupPage = () => {
               Have an Account?{" "}
               <Link
                 to="/"
-                className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                className="general-link"
               >
                 Sign in
               </Link>

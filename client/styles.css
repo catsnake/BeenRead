@@ -62,10 +62,6 @@ p {
   height: 75vh;
 }
 
-.signup-wrapper {
-
-}
-
 .login-container {
   background-color: rgba(0, 0, 0, 0.9);
   color: #fad6b4;
@@ -80,6 +76,7 @@ p {
   font-size: 42px;
   font-style: italic;
   color: #e7b34d;
+  z-index: 20;
 }
 
 .body-text {
@@ -100,6 +97,10 @@ p {
   font-family: 'Playfair Display', serif;
   color: #e7b34d;
   cursor: pointer;
+}
+
+.general-link:hover {
+  text-decoration: underline;
 }
 
 .form-label {
@@ -130,6 +131,10 @@ p {
   margin-top: 5px;
 }
 
+.sign-up-btn:hover {
+  text-decoration: underline;
+}
+
 .sign-up-btn-container {
   width: 100%;
   display: flex;
@@ -138,7 +143,7 @@ p {
 
 .form-input::placeholder {
   font-family: 'Hanken Grotesk', sans-serif;
-  color: #edddc4;
+  color: #edddc4a3;
 }
 
 .subtitle-container {
@@ -165,6 +170,7 @@ p {
   color: black;
   padding: 0 25px;
   justify-content: space-between;
+  position: sticky;
 }
 
 .menu-text {
@@ -192,6 +198,15 @@ p {
   text-decoration: underline;
 }
 
+.lower-nav-menu {
+  position: absolute;
+  top: 90%;
+}
+
+.lower-nav-menu > button {
+  position: sticky;
+}
+
 .nav-icon {
   width: 24px;
   height: 24px;
@@ -206,6 +221,10 @@ p {
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 10px;
   padding: 10px;
+}
+
+.logout-btn:hover {
+  text-decoration: underline;
 }
 
 .outer-feed-container {
@@ -234,8 +253,8 @@ p {
   padding-left: 40px;
   margin-right: 20px;
   overflow-y: scroll !important;
-  background: rgb(0,0,0, .75);
-
+  /* background: rgb(0,0,0, .75); */
+  width: 100%;
 }
 
 /* FEED ITEM STYLES */
@@ -354,6 +373,10 @@ p {
 .article-inner-container {
   display: flex;
   align-items: center;
+}
+
+.article-inner-container:hover {
+  text-decoration: underline;
 }
 
 .article-image {
@@ -486,6 +509,10 @@ p {
   grid-template-columns: 25% 75%;
 }
 
+.archive-nav-container {
+  position: -ms-page;
+}
+
 .archive-container h1 {
   font-family: 'Playfair Display', serif;
   font-size: 42px;
@@ -526,6 +553,11 @@ p {
   margin-bottom: 10px;
 }
 
+.social-outer-container {
+  display: grid;
+  grid-template-columns: 25% 75%;
+}
+
 .userContainer {
   width: 90%;
   margin: 0 auto;
@@ -540,6 +572,7 @@ p {
   position:relative;
   padding: 15px;
   overflow: auto;
+  z-index: 30;
 }
 
 .userContainer > h1 {
