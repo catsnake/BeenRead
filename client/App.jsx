@@ -9,20 +9,21 @@ import {
 } from 'react-router-dom';
 
 function App() {
+  const loginBgImgUrl = '';
+  const authenticatedBgImgUrl = '';
+
   return (
-    <div className="newspaper-texture">
+    <div className="">
+      <div className="subtitle-container">
+        <h5
+          id="subtitle"
+          className=""
+        >
+          WellRead.
+        </h5>
+      </div>
       <div className="">
-        <div className="subtitle-container">
-          <h5
-            id="subtitle"
-            className=""
-          >
-            WellRead.
-          </h5>
-        </div>
-        <div className="">
-          <Outlet />
-        </div>
+        <Outlet />
       </div>
     </div>
   );
