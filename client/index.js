@@ -20,6 +20,7 @@ import Authenticator from './components/Authenticator.jsx';
 import Signup from './components/SignUp.jsx';
 import ArticleHistory from './components/ArticleHistory.jsx';
 import ArchiveContainer from './components/ArchiveContainer.jsx';
+import Social from './components/Social.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
       <Route path="/signup" element={<Signup />} />
       <Route path="/feed" element={<Feed />} />
       <Route path="/archive" element={<ArchiveContainer />} />
+      <Route path="/social" element={<Social />} />
     </Route>
   )
 );

@@ -8,6 +8,8 @@ import {
   Outlet,
 } from 'react-router-dom';
 
+import Social from './components/Social.jsx';
+
 function App() {
   return (
     <div className="newspaper-texture">
