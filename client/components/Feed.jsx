@@ -19,6 +19,11 @@ function Feed() {
   // const dispatch = useDispatch();
   const [articleOfTheDay, setArticleOfTheDay] = useState({});
   const [isModalOpen, setIsModalOpened] = useState(false);
+  const [readTimes, setReadTimes] = useState([]);
+
+
+
+
   // Get current authorized user data:
   const username = userData.userData.username;
   const email = userData.userData.email;
@@ -55,6 +60,9 @@ function Feed() {
   const handleModalToggle = () => {
     console.log('handle modal toggle hit', isModalOpen)
     setIsModalOpened(!isModalOpen);
+    const tempReadTimes = readTimes;
+    tempReadTimes.push(Date.now());
+    setReadTimes(tempReadTimes);
   }
   useEffect(() => {
     fetch(`http://localhost:3000/api/article/getDailyArticle`)
@@ -93,7 +101,7 @@ function Feed() {
             <ArticleDisplay />
           </div>
           {
-            isModalOpen && <ArticleModal article={articleOfTheDay} isModalOpen={isModalOpen} setIsModalOpened={setIsModalOpened} />
+            isModalOpen && <ArticleModal article={articleOfTheDay} username= {username} readTimes= {readTimes} setReadTimes={setReadTimes} isModalOpen={isModalOpen} setIsModalOpened={setIsModalOpened} />
           }
           <div id="feedbox">
             <AuthenticatedFeedItem
