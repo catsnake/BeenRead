@@ -18,10 +18,6 @@ html {
   padding: 0;
 }
 
-.newspaper-texture {
-  /* background-image: url(./assets/newspaper-texture.png); */
-}
-
 #root {
   height: 100vh;
   width: 100vw;

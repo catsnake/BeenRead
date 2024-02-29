@@ -2,25 +2,25 @@ import React, { useEffect, useState } from "react";
 
 function ArticleDisplay() {
   const [articleOfTheDay, setArticleOfTheDay] = useState({});
-  const [articleTitle, setArticleTitle] = useState("");
-  const [articleImage, setArticleImage] = useState("");
-  const [articleDescription, setArticleDescription] = useState("");
+  // const [articleTitle, setArticleTitle] = useState("");
+  // const [articleImage, setArticleImage] = useState("");
+  // const [articleDescription, setArticleDescription] = useState("");
 
-  useEffect(() => {
-    console.log("use effect hit");
-    fetch("http://localhost:3000/api/article/getDailyArticle")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("data: ", data);
-        setArticleOfTheDay(data);
-        setArticleTitle(data.title);
-        setArticleImage(data.article.thumbnail.source);
-        setArticleDescription(data.article.description);
-      })
-      .catch((err) => {
-        console.log("Error fetching article of the day: ", err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   console.log("use effect hit");
+    // fetch("http://localhost:3000/api/article/getDailyArticle")
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log("data: ", data);
+    //     setArticleOfTheDay(data);
+    //     setArticleTitle(data.title);
+    //     setArticleImage(data.article.thumbnail.source);
+    //     setArticleDescription(data.article.description);
+    //   })
+    //   .catch((err) => {
+    //     console.log("Error fetching article of the day: ", err);
+    //   });
+  // }, []);
 
   const backgroundImageStyle = {
     backgroundImage: `url(${articleImage})`,
