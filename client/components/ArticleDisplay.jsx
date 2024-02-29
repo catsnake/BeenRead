@@ -32,7 +32,7 @@ function ArticleDisplay() {
   return (
     <div className="article-display-container" style={backgroundImageStyle}>
       <p className="aotd-body-text">Article of the Day</p>
-      <h3 className="aotd-header">{articleTitle.replace("_", " ")}</h3>
+      <h3 className="aotd-header">{articleTitle}</h3>
       <p className="aotd-description">{articleDescription}</p>
     </div>
   );

@@ -25,7 +25,8 @@ html {
 #root {
   height: 100vh;
   width: 100vw;
-  background-color: #fffaf5;
+  /* background-color: #fffaf5; */
+  background-color: black;
   margin: 0;
   padding: 0;
   color: #fad6b4;
@@ -57,7 +58,7 @@ p {
 }
 
 .login-container {
-  background-color: #48231d;
+  /* background-color: #48231d; */
   color: #fad6b4;
   /* border-radius: 40px; */
   padding: 30px 50px;
@@ -75,7 +76,8 @@ p {
   font-weight: 700;
   font-size: 42px;
   font-style: italic;
-  color: #fad6b4;
+  /* color: #fad6b4; */
+  color: #E7B34D;
   /* padding: 10px; */
 }
 
@@ -89,19 +91,23 @@ p {
   font-family: "Playfair Display", serif;
   font-size: 24px;
   font-weight: 600;
-  color: #f2b56a;
+  /* color: #f2b56a; */
+  /* color: #E7B34D; */
+  color: #EDDDC4;
   margin-bottom: 20px;
 }
 
 .general-link {
   font-family: "Playfair Display", serif;
-  color: #a6763c;
+  color: #E7B34D;
   cursor: pointer;
 }
 
 .form-label {
+  font-weight: 600;
+  font-size: 16px;
   display: block;
-  color: #f2b56a;
+  color: #E7B34D;
 }
 
 .form-input {
@@ -110,10 +116,10 @@ p {
   font-size: 16px;
   width: 100%;
   margin-bottom: 10px;
-  color: #bf9a78;
+  color: ##EDDDC4;
   background: none;
   border: none;
-  border-bottom: 1px solid #f2b56a;
+  border-bottom: 1px solid #E7B34D;
 }
 
 .sign-up-btn {
@@ -133,7 +139,7 @@ p {
 
 .form-input::placeholder {
   font-family: "Hanken Grotesk", sans-serif;
-  color: #fad6b4;
+  color: #EDDDC4;
 }
 
 .subtitle-container {
@@ -145,7 +151,6 @@ p {
   /* margin-top: 20px; */
   padding-left: 20px;
   margin-bottom: 20px;
-  background-color: #fffaf5;
 }
 
 #article {
