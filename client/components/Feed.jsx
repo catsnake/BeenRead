@@ -12,20 +12,6 @@ import AuthenticatedFeedItem from './AuthenticatedFeedItem.jsx';
 import ArticleDisplay from './ArticleDisplay.jsx';
 import ArticleModal from './ArticleModal.jsx';
 function Feed() {
-  // This is where our times requests from front end will be.
-  // handle click event that does does fetch request
-  // should we employ use effect and use state?
-
-  // const [myFeed, setMyFeed] = useState(
-  //   'Click the "Gimme Dat" button for a new article'
-  // );
-  // const [disValue, setdisValue] = useState(false);
-  // const [clickValue, setclickValue] = useState('GIMME DAT');
-  // const [articleId, setArticleId] = useState('');
-
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
-
   const [feedItems, setFeedItems] = useState([]);
   // const [userDB, setUserDB] = useState({});
   const userData = useSelector((state) => state.auth);
@@ -48,7 +34,7 @@ function Feed() {
           tempFeedItems.push(
             <FeedItem
               key={'key ' + item.displayName}
-          dailyReactions={item.dailyReactions}
+              dailyReactions={item.dailyReactions}
               dailyStreak={item.dailyStreak}
               displayName={item.displayName}
               readDailyArticle={item.readDailyArticle}
@@ -92,42 +78,6 @@ function Feed() {
   // const feedArticle = async () => {
   //   setMyFeed(
   //     'The Pink Fairy Armadillo is grabbing your article now! Pwease be patient uwu'
-  //   );
-  //   try {
-  //     const res = await savedArticle({
-  //       userId: userData.userData._id,
-  //     }).unwrap();
-  //     setArticleId(res._id);
-  //     console.log(res._id);
-  //     setMyFeed(res.content);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // const handleClick = () => {
-  //   feedArticle();
-
-  //   setdisValue(true);
-  //   setclickValue('disabled');
-  //   console.log('button clicked');
-  //   setTimeout(() => {
-  //     console.log('done waiting!');
-  //     setdisValue(false);
-  //     setclickValue('GIMME DAT');
-  //     setMyFeed('Click the "Gimme Dat" button for a new article');
-  //   }, 20000);
-  // };
-
-  // const logoutHandler = () => {
-  //   dispatch(logout());
-  //   navigate('/');
-  //   console.log('click');
-  // };
-
-  // const readClickHandler = () => {
-  //   checkIsRead({ articleId });
-  // };
 
   return (
     <div>
@@ -146,20 +96,28 @@ function Feed() {
             isModalOpen && <ArticleModal article={articleOfTheDay} isModalOpen={isModalOpen} setIsModalOpened={setIsModalOpened} />
           }
           <div id="feedbox">
+            <AuthenticatedFeedItem
+              displayName={username} 
+              email={email}
+              />
             <p>FEED</p>
             {/* authorized user feed item: */}
-            <AuthenticatedFeedItem displayName={username} email={email} />
-            {feedItems}
+            {
+              (feedItems.length > 0)
+              ? feedItems
+              : <p className='empty-feed-text'>Feed is empty.</p>
+            }
           </div>
-          {/* {disValue && <button onClick={readClickHandler}>Read</button>} */}
-          <button
+          
+          
+          {/* <button
             id="gimme"
             // disabled={disValue}
             // onClick={handleClick}
             className=""
           >
             Button
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

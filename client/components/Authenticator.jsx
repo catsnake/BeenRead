@@ -47,7 +47,7 @@ const Authenticator = () => {
       <form onSubmit={submitHandler} class="space-y-6" action="/">
         <h5 className="sign-in-text">Sign In. We're glad you're here.</h5>
         <div>
-          <label for="email" className="form-label">Your email</label>
+          <label for="email" className="form-label">Email</label>
           <input
             value={email}
             onChange={(e)=>setEmail(e.target.value)}
@@ -62,7 +62,7 @@ const Authenticator = () => {
         <div>
           <label
             for="password"
-            className="form-label">Your password</label>
+            className="form-label">Password</label>
           <input
           value={password}
           onChange={(e)=>setPassword(e.target.value)}

@@ -5,9 +5,6 @@ const ArticleModal = ({ setIsModalOpened, article }) => {
   const [contentText, setContentText] = useState('');
   const contentUrl = "https://en.wikipedia.org/wiki/Polar_bear"
 
-  
-  
-
   // Logic for when user clicks x (no back end logic here, user isn't finished reading)  
   const handleModalXBtn = () => {
     console.log('hanle modal x button!');
@@ -22,7 +19,6 @@ const ArticleModal = ({ setIsModalOpened, article }) => {
   
   // const contentUrl = article.content_urls.desktop.page
 
-  
   return (
     <div className="article-modal-container">
         <div className="article-modal-contents">

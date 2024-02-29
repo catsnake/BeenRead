@@ -40,6 +40,7 @@ app.use('/api/read', readRouter);
 app.get('/api/openai', aiController.getArticle, (req, res) => {
   res.status(200).send(res.locals.getArticle);
 });
+
 app.use('/api/article', articleRouter);
 
 app.get('/', (req, res) => {
