@@ -51,7 +51,9 @@ const ArchiveContainer = () => {
 
   return (
     <div className="archive-container">
-      <Navbar />
+      <div className="archive-nav-container">
+        <Navbar />
+      </div>
       <div className="archive-content">
         <h1>Archive</h1>
         <div className="archive-items">{archiveItems}</div>
