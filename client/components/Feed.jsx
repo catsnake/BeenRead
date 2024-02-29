@@ -11,15 +11,14 @@ import FeedItem from './FeedItem.jsx';
 import AuthenticatedFeedItem from './AuthenticatedFeedItem.jsx';
 import ArticleDisplay from './ArticleDisplay.jsx';
 import ArticleModal from './ArticleModal.jsx';
-
 function Feed() {
-  const [isModalOpen, setIsModalOpened] = useState(false);
   const [feedItems, setFeedItems] = useState([]);
   // const [userDB, setUserDB] = useState({});
   const userData = useSelector((state) => state.auth);
   console.log('user data: ', userData);
   // const dispatch = useDispatch();
-
+  const [articleOfTheDay, setArticleOfTheDay] = useState({});
+  const [isModalOpen, setIsModalOpened] = useState(false);
   // Get current authorized user data:
   const username = userData.userData.username;
   const email = userData.userData.email;
@@ -57,7 +56,27 @@ function Feed() {
     console.log('handle modal toggle hit', isModalOpen)
     setIsModalOpened(!isModalOpen);
   }
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/article/getDailyArticle`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('data: ', data);
+        setArticleOfTheDay(data);
+      })
+      .catch((err) => {
+        console.log('Error fetching article of the day: ', err);
+      });
+  }, []);
+  // Get current article data:
+  // console.log('feed data: ', feedData);
 
+  // // console.log(userData.userData._id)
+
+  // const [savedArticle] = useSaveArticleMutation();
+  // const [checkIsRead] = useCheckIsReadMutation();
+
+  // const feedArticle = async () => {
+  //   setMyFeed(
   //     'The Pink Fairy Armadillo is grabbing your article now! Pwease be patient uwu'
 
   return (
@@ -70,7 +89,12 @@ function Feed() {
           </div>
         </div>
         <div className="feed-column">
-          <ArticleDisplay />
+          <div className='article-display-outer-container' onClick={handleModalToggle}>
+            <ArticleDisplay />
+          </div>
+          {
+            isModalOpen && <ArticleModal article={articleOfTheDay} isModalOpen={isModalOpen} setIsModalOpened={setIsModalOpened} />
+          }
           <div id="feedbox">
             <AuthenticatedFeedItem
               displayName={username} 
