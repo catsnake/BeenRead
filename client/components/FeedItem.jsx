@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ReactionPicker from './ReactionPicker';
-
 
 function FeedItem({
   dailyReactions,
@@ -84,7 +82,7 @@ function FeedItem({
         <div className="feed-item-header">
           <div className="user-info">
             <p>
-              <span style={{ fontWeight: 400 }}>
+              <span style={{ fontWeight: 600, fontSize: 16 }}>
                 {displayName.charAt(0).toUpperCase() + displayName.slice(1)}
               </span>{' '}
               <span className="feed-item-email-text">{email}</span>
