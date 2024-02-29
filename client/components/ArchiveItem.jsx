@@ -20,7 +20,7 @@ const ArchiveItem = ({ article }) => {
       <h2
         onClick={handleModalToggle}
       >
-        {article.titles.normalized}{' '}
+        {article.article.titles.normalized}{' '}
       </h2>
       <p>Date: {formattedDate}</p>
       <p>Summary: {description}</p>

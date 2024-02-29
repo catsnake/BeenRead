@@ -34,6 +34,8 @@ function removeHtmlFormatting(text) {
 
 const articleSave = async () => {
   try {
+
+    
     const getCurrentDateFormatted = () => {
       const now = new Date();
       const year = now.getFullYear();
@@ -41,6 +43,7 @@ const articleSave = async () => {
       const day = now.getDate().toString().padStart(2, '0');
       return `${year}/${month}/${day}`;
     };
+
 
     const dateFormatted = getCurrentDateFormatted();
     const response = await axios.get(

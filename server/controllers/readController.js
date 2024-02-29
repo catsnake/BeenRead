@@ -40,6 +40,7 @@ readController.readDailyArticle = async (req, res, next) => {
 readController.updateTimeFinished = async (req, res, next) => {
   try {
     const { username } = req.params;
+    const { timeFinished } = req.body;
     const user = await User.findOne({ username });
     if (!user) {
       return next({
@@ -52,7 +53,7 @@ readController.updateTimeFinished = async (req, res, next) => {
 
     const updatedUser = await User.findByIdAndUpdate(
       userId,
-      { $set: { 'feed.timeFinishedReading': Date.now() } },
+      { $set: { 'feed.timeFinishedReading': timeFinished } },
       { new: true }
     );
 
@@ -127,6 +128,5 @@ readController.updateTimeSpent = async (req, res, next) => {
 //     });
 //   }
 // };
-
 
 module.exports = readController;

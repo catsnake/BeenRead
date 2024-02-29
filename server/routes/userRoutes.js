@@ -18,14 +18,18 @@ router.post('/signin', userController.signin, (req, res) => {
     username: res.locals.user.username,
     email: res.locals.user.email,
   });
-  //   return res.redirect("/");
 });
 
 router.get('/:username', userController.getUser, (req, res) => {
+  console.log('res.locals.users: ', res.locals.user);
   res.status(200).json({
     _id: res.locals.user._id,
     username: res.locals.user.username,
     email: res.locals.user.email,
+    dailyStreak: res.locals.user.feed.dailyStreak,
+    readDailyArticle: res.locals.user.feed.readDailyArticle,
+    timeFinishedReading:  res.locals.user.feed.timeFinishedReading,
+    timeSpentReading: res.locals.user.feed.timeSpentReading
   });
 });
 

@@ -11,28 +11,14 @@ import FeedItem from './FeedItem.jsx';
 import AuthenticatedFeedItem from './AuthenticatedFeedItem.jsx';
 import ArticleDisplay from './ArticleDisplay.jsx';
 import ArticleModal from './ArticleModal.jsx';
-
 function Feed() {
-  // This is where our times requests from front end will be.
-  // handle click event that does does fetch request
-  // should we employ use effect and use state?
-
-  // const [myFeed, setMyFeed] = useState(
-  //   'Click the "Gimme Dat" button for a new article'
-  // );
-  // const [disValue, setdisValue] = useState(false);
-  // const [clickValue, setclickValue] = useState('GIMME DAT');
-  // const [articleId, setArticleId] = useState('');
-
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpened] = useState(false);
   const [feedItems, setFeedItems] = useState([]);
   // const [userDB, setUserDB] = useState({});
   const userData = useSelector((state) => state.auth);
   console.log('user data: ', userData);
   // const dispatch = useDispatch();
-
+  const [articleOfTheDay, setArticleOfTheDay] = useState({});
+  const [isModalOpen, setIsModalOpened] = useState(false);
   // Get current authorized user data:
   const username = userData.userData.username;
   const email = userData.userData.email;
@@ -48,7 +34,7 @@ function Feed() {
           tempFeedItems.push(
             <FeedItem
               key={'key ' + item.displayName}
-          dailyReactions={item.dailyReactions}
+              dailyReactions={item.dailyReactions}
               dailyStreak={item.dailyStreak}
               displayName={item.displayName}
               readDailyArticle={item.readDailyArticle}
@@ -70,7 +56,17 @@ function Feed() {
     console.log('handle modal toggle hit', isModalOpen)
     setIsModalOpened(!isModalOpen);
   }
-
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/article/getDailyArticle`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('data: ', data);
+        setArticleOfTheDay(data);
+      })
+      .catch((err) => {
+        console.log('Error fetching article of the day: ', err);
+      });
+  }, []);
   // Get current article data:
   // console.log('feed data: ', feedData);
 
@@ -82,42 +78,6 @@ function Feed() {
   // const feedArticle = async () => {
   //   setMyFeed(
   //     'The Pink Fairy Armadillo is grabbing your article now! Pwease be patient uwu'
-  //   );
-  //   try {
-  //     const res = await savedArticle({
-  //       userId: userData.userData._id,
-  //     }).unwrap();
-  //     setArticleId(res._id);
-  //     console.log(res._id);
-  //     setMyFeed(res.content);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // const handleClick = () => {
-  //   feedArticle();
-
-  //   setdisValue(true);
-  //   setclickValue('disabled');
-  //   console.log('button clicked');
-  //   setTimeout(() => {
-  //     console.log('done waiting!');
-  //     setdisValue(false);
-  //     setclickValue('GIMME DAT');
-  //     setMyFeed('Click the "Gimme Dat" button for a new article');
-  //   }, 20000);
-  // };
-
-  // const logoutHandler = () => {
-  //   dispatch(logout());
-  //   navigate('/');
-  //   console.log('click');
-  // };
-
-  // const readClickHandler = () => {
-  //   checkIsRead({ articleId });
-  // };
 
   return (
     <div>
@@ -133,23 +93,31 @@ function Feed() {
             <ArticleDisplay />
           </div>
           {
-            isModalOpen && <ArticleModal isModalOpen={isModalOpen} setIsModalOpened={setIsModalOpened} />
+            isModalOpen && <ArticleModal article={articleOfTheDay} isModalOpen={isModalOpen} setIsModalOpened={setIsModalOpened} />
           }
           <div id="feedbox">
+            <AuthenticatedFeedItem
+              displayName={username} 
+              email={email}
+              />
             <p>FEED</p>
             {/* authorized user feed item: */}
-            <AuthenticatedFeedItem displayName={username} email={email} />
-            {feedItems}
+            {
+              (feedItems.length > 0)
+              ? feedItems
+              : <p className='empty-feed-text'>Feed is empty.</p>
+            }
           </div>
-          {/* {disValue && <button onClick={readClickHandler}>Read</button>} */}
-          <button
+          
+          
+          {/* <button
             id="gimme"
             // disabled={disValue}
             // onClick={handleClick}
             className=""
           >
             Button
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
