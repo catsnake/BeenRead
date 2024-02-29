@@ -11,12 +11,11 @@ import FeedItem from './FeedItem.jsx';
 import AuthenticatedFeedItem from './AuthenticatedFeedItem.jsx';
 import ArticleDisplay from './ArticleDisplay.jsx';
 import ArticleModal from './ArticleModal.jsx';
+
 function Feed() {
   const [feedItems, setFeedItems] = useState([]);
-  // const [userDB, setUserDB] = useState({});
   const userData = useSelector((state) => state.auth);
   console.log('user data: ', userData);
-  // const dispatch = useDispatch();
   const [articleOfTheDay, setArticleOfTheDay] = useState({});
   const [isModalOpen, setIsModalOpened] = useState(false);
   // Get current authorized user data:
@@ -80,7 +79,7 @@ function Feed() {
   //     'The Pink Fairy Armadillo is grabbing your article now! Pwease be patient uwu'
 
   return (
-    <div>
+    <div className='feed-image-background'>
       <div />
       <div className="outer-feed-container">
         <div className="nav-column">
@@ -108,16 +107,6 @@ function Feed() {
               : <p className='empty-feed-text'>Feed is empty.</p>
             }
           </div>
-          
-          
-          {/* <button
-            id="gimme"
-            // disabled={disValue}
-            // onClick={handleClick}
-            className=""
-          >
-            Button
-          </button> */}
         </div>
       </div>
     </div>
