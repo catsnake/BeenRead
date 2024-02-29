@@ -6,7 +6,11 @@ const wikipediaController = require('../controllers/wikipediaController');
 const router = express.Router();
 
 router.get('/getDailyArticle', articleController.getArticle, (req, res) => {
-  res.status(201).json(res.locals.mostRecentArticle);
+  res.status(200).json(res.locals.mostRecentArticle);
+});
+
+router.get('/getArchive', articleController.getArchive, (req, res) => {
+  res.status(200).json(res.locals.archive);
 });
 
 router.get(
