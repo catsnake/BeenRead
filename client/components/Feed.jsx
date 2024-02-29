@@ -32,7 +32,7 @@ function Feed() {
   const userData = useSelector((state) => state.auth);
   console.log('user data: ', userData);
   // const dispatch = useDispatch();
-
+  const [articleOfTheDay, setArticleOfTheDay] = useState({});
   // Get current authorized user data:
   const username = userData.userData.username;
   const email = userData.userData.email;
@@ -70,7 +70,17 @@ function Feed() {
     console.log('handle modal toggle hit', isModalOpen)
     setIsModalOpened(!isModalOpen);
   }
-
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/article/getDailyArticle`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('data: ', data);
+        setArticleOfTheDay(data);
+      })
+      .catch((err) => {
+        console.log('Error fetching article of the day: ', err);
+      });
+  }, []);
   // Get current article data:
   // console.log('feed data: ', feedData);
 
@@ -133,7 +143,7 @@ function Feed() {
             <ArticleDisplay />
           </div>
           {
-            isModalOpen && <ArticleModal isModalOpen={isModalOpen} setIsModalOpened={setIsModalOpened} />
+            isModalOpen && <ArticleModal article={articleOfTheDay} isModalOpen={isModalOpen} setIsModalOpened={setIsModalOpened} />
           }
           <div id="feedbox">
             <p>FEED</p>
