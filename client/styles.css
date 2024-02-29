@@ -204,7 +204,7 @@ p {
   height: 90vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 35% 65%;
+  grid-template-columns: 20% 80%;
 }
 
 /* FEED COLUMN STYLES */
@@ -228,7 +228,7 @@ p {
 .feed-column {
   position: relative;
   height: 100vh;
-  top: -105px;
+  top: -145px;
   padding-top: 40px;
   padding-left: 20px;
   overflow-y: scroll !important;
@@ -244,6 +244,21 @@ p {
     border-radius: 40px;
     background: #F1F1F1;
     background: linear-gradient(135deg, #F1F1F1, #ECECEC);
+}
+
+.authenticated-feed-item-container {
+  /* margin: 30px 0; */
+  margin-bottom: 30px;
+  color: black;
+  font-weight: 300;
+  width: 100%;
+  padding: 25px 30px;
+  background: #F1F1F1;
+  background: linear-gradient(135deg, #F1F1F1, #ECECEC);
+}
+
+.authenticated-user-header {
+  font-size: 24px;
 }
 
 .feed-item-header {

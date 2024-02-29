@@ -34,5 +34,5 @@ articleSave = async () => {
     console.error('Error in saving article: ', err);
   }
 };
-// articleSave();
+articleSave();
 module.exports = articleSave;

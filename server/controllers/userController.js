@@ -58,9 +58,7 @@ userController.getUser = async (req, res, next) => {
   try {
     const { username } = req.params;
     const user = await User.findOne({ username });
-
     res.locals.user = user;
-
     return next();
   } catch (error) {
     return next({

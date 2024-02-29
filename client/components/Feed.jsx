@@ -48,7 +48,7 @@ function Feed() {
           tempFeedItems.push(
             <FeedItem
               key={'key ' + item.displayName}
-          dailyReactions={item.dailyReactions}
+              dailyReactions={item.dailyReactions}
               dailyStreak={item.dailyStreak}
               displayName={item.displayName}
               readDailyArticle={item.readDailyArticle}
@@ -136,9 +136,12 @@ function Feed() {
             isModalOpen && <ArticleModal isModalOpen={isModalOpen} setIsModalOpened={setIsModalOpened} />
           }
           <div id="feedbox">
+            <AuthenticatedFeedItem
+              displayName={username} 
+              email={email}
+              />
             <p>FEED</p>
             {/* authorized user feed item: */}
-            <AuthenticatedFeedItem displayName={username} email={email} />
             {feedItems}
           </div>
           {/* {disValue && <button onClick={readClickHandler}>Read</button>} */}

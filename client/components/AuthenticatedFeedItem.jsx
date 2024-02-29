@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import ReactionPicker from './ReactionPicker';
+import React, { useState, useEffect } from 'react';
 
 function AuthenticatedFeedItem(
   { 
@@ -8,6 +7,18 @@ function AuthenticatedFeedItem(
   }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    console.log('use effect hit');
+    fetch(`http://localhost:3000/api/user/${displayName}`)
+      .then(response => {
+        console.log('response: ', response);
+        response.json();
+      })
+      .then(data => {
+        console.log('data in auth feed item: ', data);
+      })
+  }, []);
+
   const handleReactionBtnClick = () => {
     console.log('handle btn click hit', isOpen);
     setIsOpen(true);
@@ -15,13 +26,13 @@ function AuthenticatedFeedItem(
 
   return (
     <>
-      <div className="feed-item-container">
+      <div className="authenticated-feed-item-container">
         <div className="feed-item-header">
           <div className="user-info">
-            <p><span style={{fontWeight: 400}}>{displayName}</span> <span className='feed-item-email-text'>{email}</span></p>
+            <p className='authenticated-user-header'><span style={{fontWeight: 400}}>{displayName}</span> <span className='feed-item-email-text'>{email}</span></p>
           </div>
           <div className="feed-item-timestamp">
-            <p>7:30pm</p>
+            {/* <p>7:30pm</p> */}
           </div>
         </div>
         <div className="feed-item-content">
