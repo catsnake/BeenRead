@@ -21,7 +21,6 @@ router.post('/signin', userController.signin, (req, res) => {
 });
 
 router.get('/:username', userController.getUser, (req, res) => {
-  console.log('res.locals.users: ', res.locals.user);
   res.status(200).json({
     _id: res.locals.user._id,
     username: res.locals.user.username,

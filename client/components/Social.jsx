@@ -25,6 +25,7 @@ const Social = () => {
   }, []);
 
   return (
+<<<<<<< HEAD
     <div className="social-outer-container">
       <Navbar />
       <div className="userContainer">
@@ -41,6 +42,21 @@ const Social = () => {
                 <div className="follow-btn-container">
                   <a>Follow</a>
                 </div>
+=======
+    <div className="userContainer">
+      <h1>Global Users</h1>
+      {socialItem &&
+        socialItem.map((item) => (
+          <div className="users">
+            <div className='user-details'>
+              <div key={item.id}>
+                {item.username.charAt(0).toUpperCase() + item.username.slice(1) }
+                <div>Followed Users: {item.followedUsers}</div>
+                <div>Followers: {item.followers}</div>
+              </div>
+              <div className="follow-btn-container">
+                <a>Follow</a>
+>>>>>>> f7b87b9034cd819f2b7f68aca2dd5de2b617cbb3
               </div>
             </div>
           ))}
