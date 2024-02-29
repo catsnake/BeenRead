@@ -10,7 +10,7 @@ import { Navbar } from './Navbar';
 import FeedItem from './FeedItem.jsx';
 import AuthenticatedFeedItem from './AuthenticatedFeedItem.jsx';
 import ArticleDisplay from './ArticleDisplay.jsx';
-
+import ArticleModal from './ArticleModal.jsx';
 function Feed() {
   // This is where our times requests from front end will be.
   // handle click event that does does fetch request
@@ -32,6 +32,7 @@ function Feed() {
   console.log('user data: ', userData);
   // const dispatch = useDispatch();
   const [articleOfTheDay, setArticleOfTheDay] = useState({});
+  const [isModalOpen, setIsModalOpened] = useState(false);
   // Get current authorized user data:
   const username = userData.userData.username;
   const email = userData.userData.email;
