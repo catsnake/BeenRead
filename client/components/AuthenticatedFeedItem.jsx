@@ -3,24 +3,11 @@ import React, { useState, useEffect } from 'react';
 function AuthenticatedFeedItem(
   { 
     displayName, 
-    email
+    email,
+    userFeedData,
+    dailyStreak
   }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [userFeedData, setUserFeedData] = useState({});
 
-  useEffect(() => {
-    console.log('use effect hit');
-    const getUserFeedData = () => {
-      fetch(`http://localhost:3000/api/user/${displayName}`)
-        .then(response => response.json())
-        .then(data => {
-          setUserFeedData(data);
-        })
-    };
-    getUserFeedData();
-  }, []);
-
-  console.log('logging user feed data: ', userFeedData);
 
   const handleReactionBtnClick = () => {
     console.log('handle btn click hit', isOpen);
@@ -64,7 +51,7 @@ function AuthenticatedFeedItem(
           </div>
           <div className="streak-container">
             {/* <p>user streak</p> */}
-            <p>Daily streak: {userFeedData.dailyStreak}{userFeedData.dailyStreak > 0 && ' 🔥'}</p>
+            <p>Daily streak: {dailyStreak}{dailyStreak > 5 && ' 🔥'}</p>
           </div>
         </div>
       </div>

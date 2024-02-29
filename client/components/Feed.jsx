@@ -19,9 +19,29 @@ function Feed() {
   const [articleOfTheDay, setArticleOfTheDay] = useState({});
   const [isModalOpen, setIsModalOpened] = useState(false);
   const [readTimes, setReadTimes] = useState([]);
+  
+  const [isOpen, setIsOpen] = useState(false);
+  const [userFeedData, setUserFeedData] = useState({});
+  const [dailyStreak, setDailyStreak] = useState();
 
+  useEffect(() => {
+    console.log('use effect hit');
+    const getUserFeedData = () => {
+      fetch(`http://localhost:3000/api/user/${username}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setUserFeedData(data);
+        });
+    };
+    getUserFeedData();
+    setDailyStreak(userFeedData.dailyStreak);
+  }, []);
 
-
+  useEffect(() => {
+    setDailyStreak(userFeedData.dailyStreak);
+  }, [userFeedData]);
+  
+  console.log('logging user feed data: ', userFeedData);
 
   // Get current authorized user data:
   const username = userData.userData.username;
@@ -57,12 +77,12 @@ function Feed() {
   }, []);
 
   const handleModalToggle = () => {
-    console.log('handle modal toggle hit', isModalOpen)
+    console.log('handle modal toggle hit', isModalOpen);
     setIsModalOpened(!isModalOpen);
     const tempReadTimes = readTimes;
     tempReadTimes.push(Date.now());
     setReadTimes(tempReadTimes);
-  }
+  };
   useEffect(() => {
     fetch(`http://localhost:3000/api/article/getDailyArticle`)
       .then((response) => response.json())
@@ -87,7 +107,7 @@ function Feed() {
   //     'The Pink Fairy Armadillo is grabbing your article now! Pwease be patient uwu'
 
   return (
-    <div className='feed-image-background'>
+    <div className="feed-image-background">
       <div />
       <div className="outer-feed-container">
         <div className="nav-column">
@@ -96,24 +116,37 @@ function Feed() {
           </div>
         </div>
         <div className="feed-column">
-          <div className='article-display-outer-container' onClick={handleModalToggle}>
+          <div
+            className="article-display-outer-container"
+            onClick={handleModalToggle}
+          >
             <ArticleDisplay />
           </div>
-          {
-            isModalOpen && <ArticleModal article={articleOfTheDay} username= {username} readTimes= {readTimes} setReadTimes={setReadTimes} isModalOpen={isModalOpen} setIsModalOpened={setIsModalOpened} />
-          }
+          {isModalOpen && (
+            <ArticleModal
+              setDailyStreak={setDailyStreak}
+              article={articleOfTheDay}
+              username={username}
+              readTimes={readTimes}
+              setReadTimes={setReadTimes}
+              isModalOpen={isModalOpen}
+              setIsModalOpened={setIsModalOpened}
+            />
+          )}
           <div id="feedbox">
             <AuthenticatedFeedItem
-              displayName={username} 
+              displayName={username}
               email={email}
-              />
+              userFeedData={userFeedData}
+              dailyStreak={dailyStreak}
+            />
             <p>FEED</p>
             {/* authorized user feed item: */}
-            {
-              (feedItems.length > 0)
-              ? feedItems
-              : <p className='empty-feed-text'>Feed is empty.</p>
-            }
+            {feedItems.length > 0 ? (
+              feedItems
+            ) : (
+              <p className="empty-feed-text">Feed is empty.</p>
+            )}
           </div>
         </div>
       </div>
