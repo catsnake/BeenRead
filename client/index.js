@@ -19,6 +19,7 @@ import Feed from './components/Feed.jsx';
 import Authenticator from './components/Authenticator.jsx';
 import Signup from './components/SignUp.jsx';
 import ArticleHistory from './components/ArticleHistory.jsx';
+import ArchiveContainer from './components/ArchiveContainer.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,7 +27,7 @@ const router = createBrowserRouter(
       <Route index={true} path="/" element={<Authenticator />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/feed" element={<Feed />} />
-      <Route path="/articleHistory/:id" element={<ArticleHistory />} />
+      <Route path="/archive" element={<ArchiveContainer />} />
     </Route>
   )
 );

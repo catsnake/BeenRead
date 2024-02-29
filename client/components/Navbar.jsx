@@ -22,7 +22,7 @@ export const Navbar = ({userData}) => {
     <div className="upper-nav-menu">
       <p className='menu-text'>MENU</p>
       {/* <Link to={`/articleHistory/${userData.userData._id}`} className="nav-item" aria-current="page"> */}
-      <Link to={`/articleHistory`} className='nav-item' aria-current='page'>
+      <Link to={`/archive`} className='nav-item' aria-current='page'>
         <span>
           <svg className='nav-icon' xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
             <path fill="currentColor" d="M19 3.25H6.75a2.43 2.43 0 0 0-2.5 2.35V18a2.85 2.85 0 0 0 2.94 2.75H19a.76.76 0 0 0 .75-.75V4a.76.76 0 0 0-.75-.75Zm-.75 16H7.19A1.35 1.35 0 0 1 5.75 18a1.35 1.35 0 0 1 1.44-1.25h11.06Zm0-4H7.19a3 3 0 0 0-1.44.37V5.6a.94.94 0 0 1 1-.85h11.5Z"/>
