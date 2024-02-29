@@ -7,6 +7,10 @@ const ArticleModal = ({
   setReadTimes,
   readTimes,
   username,
+  archive,
+  setArchive,
+  setDailyStreak,
+  dailyStreak
 }) => {
   const [contentText, setContentText] = useState('');
   const contentUrl = 'https://en.wikipedia.org/wiki/Polar_bear';
@@ -15,9 +19,13 @@ const ArticleModal = ({
   const handleModalXBtn = () => {
     console.log('hanle modal x button!');
     setIsModalOpened(false);
-    const tempReadTimes = readTimes;
-    tempReadTimes.push(Date.now());
-    setReadTimes(tempReadTimes);
+    if (!archive) {
+      const tempReadTimes = readTimes;
+      tempReadTimes.push(Date.now());
+      setReadTimes(tempReadTimes);
+    } else {
+      setArchive(false);
+    }
   };
 
   // Logic for when user is done reading article (some back end logic here)
@@ -26,38 +34,43 @@ const ArticleModal = ({
     const URL = 'http://localhost:3000/api/read/';
 
     setIsModalOpened(false);
-    const timeFinished = Date.now();
+    if (!archive) {
+      const timeFinished = Date.now();
 
-    const lastOpen = readTimes[readTimes.length - 1];
-    
-    let timeSpent = 0;
+      const lastOpen = readTimes[readTimes.length - 1];
 
-    for (let i = 0; i < readTimes.length - 1; i += 2) {
-      const openTime = readTimes[i];
-      const closeTime = readTimes[i + 1];
-      timeSpent += closeTime - openTime;
+      let timeSpent = 0;
+
+      for (let i = 0; i < readTimes.length - 1; i += 2) {
+        const openTime = readTimes[i];
+        const closeTime = readTimes[i + 1];
+        timeSpent += closeTime - openTime;
+      }
+
+      timeSpent += timeFinished - lastOpen;
+      timeSpent = Math.floor(timeSpent / 60000); // Convert milliseconds to minutes
+
+      try {
+        await fetch(URL + 'readDailyArticle/' + username, { method: 'PATCH' });
+        await fetch(URL + 'updateTimeFinished/' + username, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ timeFinished: timeFinished }),
+        });
+        await fetch(URL + 'updateTimeSpent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: username, timeSpent: timeSpent }),
+        });
+      } catch {
+        console.log('Error in read button');
+      }
+
+      setReadTimes([]);
+      setDailyStreak(dailyStreak + 1);
+    } else {
+      setArchive(false);
     }
-
-    timeSpent += timeFinished - lastOpen;
-    timeSpent = Math.floor(timeSpent / 60000); // Convert milliseconds to minutes
-
-    try {
-      await fetch(URL + 'readDailyArticle/' + username, { method: 'PATCH' });
-      await fetch(URL + 'updateTimeFinished/' + username, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ timeFinished: timeFinished }),
-      });
-      await fetch(URL + 'updateTimeSpent', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: username, timeSpent: timeSpent }),
-      });
-    } catch {
-      console.log('Error in read button');
-    }
-
-    setReadTimes([]);
   };
 
   // const contentUrl = article.content_urls.desktop.page
