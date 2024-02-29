@@ -44,10 +44,10 @@ const Authenticator = () => {
   return (
     <div className="authenticator-wrapper">
       <div className='login-container' id="login">
-      <form onSubmit={submitHandler} class="space-y-6" action="/">
+      <form onSubmit={submitHandler} className="space-y-6" action="/">
         <h5 className="sign-in-text">Sign In. We're glad you're here.</h5>
         <div>
-          <label for="email" className="form-label">Email</label>
+          <label htmlFor="email" className="form-label">Email</label>
           <input
             value={email}
             onChange={(e)=>setEmail(e.target.value)}
@@ -61,7 +61,7 @@ const Authenticator = () => {
         </div>
         <div>
           <label
-            for="password"
+            htmlFor="password"
             className="form-label">Password</label>
           <input
           value={password}
@@ -80,7 +80,7 @@ const Authenticator = () => {
         </button> */}
         {/* <p className="body-text">Already have an account? <span><Link to='/signin' className="general-link">Sign in now</Link></span>.</p> */}
        <p className='general-link' onClick={submitHandler}>Sign In</p>
-        <div class=""><p className="body-text inline">Not registered? </p><span><Link to="/signup" class="general-link">Create account</Link></span>
+        <div><p className="body-text inline">Not registered? </p><span><Link to="/signup" className="general-link">Create account</Link></span>
         </div>
       </form>
     </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   // Router,
   // Route,
@@ -9,11 +9,8 @@ import {
 } from 'react-router-dom';
 
 function App() {
-  const loginBgImgUrl = '';
-  const authenticatedBgImgUrl = '';
-
   return (
-    <div className="">
+    <div>
       <div className="subtitle-container">
         <h5
           id="subtitle"

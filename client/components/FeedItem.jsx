@@ -90,8 +90,8 @@ function FeedItem({
           </div>
           <div className="feed-item-timestamp">
             <p>
-              {timeFinishedReading
-                ? new Date(timeFinishedReading).toLocaleTimeString([], {
+              { timeFinishedReading
+                ? 'Read article at ' + new Date(timeFinishedReading).toLocaleTimeString([], {
                     hour: 'numeric',
                     minute: '2-digit',
                     hour12: true,
@@ -122,7 +122,7 @@ function FeedItem({
           <button onClick={handleClick} className="like-btn">
             👍
           </button>
-          <span className="likes-count">{` ${likes} ${likes > 1 ? 'likes' : 'like'}`}</span>
+          <span className="likes-count">{` ${likes} ${(likes > 1 || likes === 0) ? 'likes' : 'like'}`}</span>
         </div>
       </div>
     </>
