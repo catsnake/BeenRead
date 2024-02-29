@@ -24,6 +24,7 @@ function Feed() {
   const [isOpen, setIsOpen] = useState(false);
   const [userFeedData, setUserFeedData] = useState({});
   const [dailyStreak, setDailyStreak] = useState();
+  const [readArticle, setReadArticle] = useState(false);
 
   useEffect(() => {
     console.log('use effect hit');
@@ -40,6 +41,10 @@ function Feed() {
 
   useEffect(() => {
     setDailyStreak(userFeedData.dailyStreak);
+  }, [userFeedData]);
+
+  useEffect(() => {
+    setReadArticle(userFeedData.readDailyArticle);
   }, [userFeedData]);
   
   console.log('logging user feed data: ', userFeedData);
@@ -127,6 +132,7 @@ function Feed() {
             <ArticleModal
               setDailyStreak={setDailyStreak}
               dailyStreak={dailyStreak}
+              setReadArticle={setReadArticle}
               article={articleOfTheDay}
               username={username}
               readTimes={readTimes}
@@ -141,6 +147,7 @@ function Feed() {
               email={email}
               userFeedData={userFeedData}
               dailyStreak={dailyStreak}
+              readArticle={readArticle}
             />
             <p>FEED</p>
             {/* authorized user feed item: */}

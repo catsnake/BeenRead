@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { readDailyArticle } from '../../server/controllers/readController';
 
 function AuthenticatedFeedItem(
   { 
     displayName, 
     email,
     userFeedData,
-    dailyStreak
+    dailyStreak,
+    readArticle
   }) {
 
 
@@ -37,7 +39,7 @@ function AuthenticatedFeedItem(
               ? <p>You haven't read today's article.</p>
               : <p>You read today's article!</p>
             } */}
-            {userFeedData.readDailyArticle ? (
+            {readArticle ? (
               <p>
                 {displayName.charAt(0).toUpperCase() + displayName.slice(1)}{' '}
                 read the daily article in {userFeedData.timeSpentReading} minutes!

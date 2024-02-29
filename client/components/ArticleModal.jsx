@@ -10,7 +10,7 @@ const ArticleModal = ({
   archive,
   setArchive,
   setDailyStreak,
-  dailyStreak
+  dailyStreak,
 }) => {
   const [contentText, setContentText] = useState('');
   const contentUrl = 'https://en.wikipedia.org/wiki/Polar_bear';
@@ -68,6 +68,7 @@ const ArticleModal = ({
 
       setReadTimes([]);
       setDailyStreak(dailyStreak + 1);
+      setReadArticle(true);
     } else {
       setArchive(false);
     }
