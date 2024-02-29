@@ -68,4 +68,32 @@ feedController.postReaction = async (req, res, next) => {
         });
     }
 };
+
+feedController.deleteReaction = async (req, res, next) => {
+    try {
+        const { username, postUsername } = req.body;
+
+        const user = await User.findOne({ username });
+        const postUser = await User.findOne({ username: postUsername });
+
+        if (!user || !postUser) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(
+            postUser._id,
+            { $pull: { 'feed.dailyReactions': { userId: user._id } } },
+            { new: true }
+        );
+
+        res.locals.updatedUser = updatedUser;
+        return next();
+    } catch (error) {
+        return next({
+            log: `Error in feedController.deleteReaction: ${error}`,
+            message: { error: 'Cannot delete reaction' },
+        });
+    }
+}
+
 module.exports = feedController;

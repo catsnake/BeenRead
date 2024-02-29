@@ -39,6 +39,7 @@ const ArticleModal = ({
     }
 
     timeSpent += timeFinished - lastOpen;
+    timeSpent = Math.floor(timeSpent / 60000); // Convert milliseconds to minutes
 
     try {
       await fetch(URL + 'readDailyArticle/' + username, { method: 'PATCH' });

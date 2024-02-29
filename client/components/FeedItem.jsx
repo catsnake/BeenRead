@@ -55,6 +55,27 @@ function FeedItem({
           console.error('Error:', error);
         });
     }
+    else {
+      fetch('http://localhost:3000/api/feed/delete', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: user,
+          postUsername: displayName,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+          setLikes(likes - 1);
+          setLiked(false);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
   };
 
   return (
