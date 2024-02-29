@@ -40,94 +40,84 @@ const SignupPage = () => {
   };
 
   return (
-    <section id= "signup">
-      <div className='relative h-48 w-48'>
-      <div className='absolute top-0 flex w-full justify-center'>
-        <div className='left-0 h-[1px] animate-border-width rounded-full bg-gradient-to-r from-[rgba(17,17,17,0)] via-white to-[rgba(17,17,17,0)] transition-all duration-1000' />
-      </div>
-      <div className='flex h-full items-center justify-center rounded-md border border-gray-800 bg-gradient-to-b from-gray-950 to-black px-3 py-2'>
-        <p className='text-sm text-gray-200'>Card Content</p>
-      </div>
-    </div>
-      {/* <div className="">
-        <div className="">
-          <div className="login-container">
-            <h1 className="sign-in-text">
-              Sign Up
-            </h1>
+    <div className="authenticator-wrapper">
+      <section id= "signup">
+        <div className="login-container">
+          <h1 className="sign-in-text">
+            Sign Up
+          </h1>
 
-            <form onSubmit={submitHandler} className="">
-              <div>
-                <label
-                  // for="email"
-                  className="form-label"
-                >Your name</label>
-                <input
-                  type="text"
-                  value={username}
-                  className="form-input"
-                  placeholder="Code Smith"
-                  required
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-              <div>
-                <label
-                  // for="email"
-                  className="form-label"
-                >
-                  Your email
-                </label>
-                <input
-                  type="email"
-                  value={email}
-                  className="form-input"
-                  placeholder="name@email.com"
-                  required
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div>
-                <label
-                  // for="password"
-                  className="form-label">Password</label>
-                <input
-                  type="password"
-                  value={password}
-                  placeholder="••••••••"
-                  className="form-input"
-                  required
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
+          <form onSubmit={submitHandler} className="space-y-6">
+            <div>
+              <label
+                // for="email"
+                className="form-label"
+              >Your name</label>
+              <input
+                type="text"
+                value={username}
+                className="form-input"
+                placeholder="Codiandra Smithophina"
+                required
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div>
+              <label
+                // for="email"
+                className="form-label"
+              >
+                Your email
+              </label>
+              <input
+                type="email"
+                value={email}
+                className="form-input"
+                placeholder="name@email.com"
+                required
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
+              <label
+                // for="password"
+                className="form-label">Password</label>
+              <input
+                type="password"
+                value={password}
+                placeholder="••••••••"
+                className="form-input"
+                required
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
 
-              <div className="flex items-center justify-between">
-                <div className="flex items-start">
+            {/* <div className="flex items-center justify-between">
+              <div className="flex items-start">
+                
+                <div className="ml-3 text-sm">
                   
-                  <div className="ml-3 text-sm">
-                    
-                  </div>
                 </div>
               </div>
+            </div> */}
 
-              <div className="sign-up-btn-container">
-                <button type="submit" className="sign-up-btn">Sign up</button>
-              </div>
+            <div className="sign-up-btn-container">
+              <button type="submit" className="sign-up-btn">Sign up</button>
+            </div>
 
-              <p className="body-text">
-                Have an Account?{" "}
-                <Link
-                  to="/"
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                >
-                  Sign in
-                </Link>
-              </p>
-            </form>
-          </div>
+            <p className="body-text">
+              Have an Account?{" "}
+              <Link
+                to="/"
+                className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+              >
+                Sign in
+              </Link>
+            </p>
+          </form>
         </div>
-      </div> */}
     </section>
+    </div>
   );
 };
 

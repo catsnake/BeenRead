@@ -58,23 +58,20 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* max-width: 900px; */
   color: white;
   height: 75vh;
+}
+
+.signup-wrapper {
+
 }
 
 .login-container {
   background-color: rgba(0, 0, 0, 0.9);
   color: #fad6b4;
-  /* border-radius: 40px; */
   padding: 50px 70px;
   display: flex;
   flex-direction: column;
-  /* max-width: 900px    */
-}
-
-#signup {
-  /* background-color: rgb(246, 205, 212);    box-shadow: 8px 8px 8px 8px rgb(198, 155, 162); */
 }
 
 #subtitle {
@@ -212,12 +209,6 @@ p {
 }
 
 .outer-feed-container {
-  /* background-color: #fffaf5; */
-  /* background-color: rgba(255, 255, 255, 0.5); */
-  /* background: rgb(255,255,255); */
-  /* background: linear-gradient(180deg, rgba(255,255,255, 0) 100%, rgba(0,0,0,0) 0%); */
-  /* background-position: center;
-  background-size: cover; */
   height: 90vh;
   width: 100vw;
   display: grid;
