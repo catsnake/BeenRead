@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { readDailyArticle } from '../../server/controllers/readController';
 
 function AuthenticatedFeedItem(
   { 
