@@ -51,7 +51,7 @@ function AuthenticatedFeedItem(
           </div>
           <div className="streak-container">
             {/* <p>user streak</p> */}
-            <p>Daily streak: {dailyStreak}{dailyStreak > 5 && ' 🔥'}</p>
+            <p>Daily streak: {dailyStreak}{dailyStreak > 5 && ' 🔥'}{dailyStreak > 10 && '🔥'}{dailyStreak > 15 && '🔥'}</p>
           </div>
         </div>
       </div>

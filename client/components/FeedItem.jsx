@@ -13,7 +13,7 @@ function FeedItem({
 }) {
   const [likes, setLikes] = useState(0);
   const [liked, setLiked] = useState(false);
-  
+
   useEffect(() => {
     setLikes(dailyReactions.length);
   }, [dailyReactions]);
@@ -26,10 +26,9 @@ function FeedItem({
     });
   }, []);
 
-
   const handleClick = () => {
     console.log('likes:', likes);
-    console.log(dailyReactions)
+    console.log(dailyReactions);
     console.log('userId:', userId);
     if (!liked) {
       fetch('http://localhost:3000/api/feed/post', {
@@ -52,8 +51,7 @@ function FeedItem({
         .catch((error) => {
           console.error('Error:', error);
         });
-    }
-    else {
+    } else {
       fetch('http://localhost:3000/api/feed/delete', {
         method: 'DELETE',
         headers: {
@@ -115,14 +113,21 @@ function FeedItem({
             )}
           </div>
           <div className="streak-container">
-            <p>Daily Streak: {dailyStreak}</p>
+            <p>
+              Daily Streak: {dailyStreak}
+              {dailyStreak > 5 && ' 🔥'}
+              {dailyStreak > 10 && '🔥'}
+              {dailyStreak > 15 && '🔥'}
+            </p>
           </div>
         </div>
         <div className="reactions-container">
           <button onClick={handleClick} className="like-btn">
             👍
           </button>
-          <span className="likes-count">{` ${likes} ${likes > 1 ? 'likes' : 'like'}`}</span>
+          <span className="likes-count">{` ${likes} ${
+            likes > 1 ? 'likes' : 'like'
+          }`}</span>
         </div>
       </div>
     </>
