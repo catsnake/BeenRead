@@ -26,7 +26,9 @@ app.use(express.json());
 app.use(cors());
 
 // connect database
-connectDB().then(() => articleSave());
+connectDB()
+// .then(() => dailyReset())
+// .then(() => articleSave());
 
 app.use(express.static(path.join(__dirname, '../index.html')));
 
