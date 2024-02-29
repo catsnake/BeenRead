@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import SocialItem from './SocialItem';
 
 const Social = () => {
   const [socialItem, setSocialItem] = useState([]);
-  console.log("allSocial: ", socialItem);
+  const userData = useSelector((state) => state.auth);
+  console.log('allSocial: ', socialItem);
+
+  const username = userData.userData.username;
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/social/getAllUsers`)
@@ -19,7 +24,7 @@ const Social = () => {
         setSocialItem(tempSocialItem);
       })
       .catch((err) => {
-        console.log("error in social: ", err);
+        console.log('error in social: ', err);
       });
   }, []);
 
@@ -27,22 +32,12 @@ const Social = () => {
     <div className="userContainer">
       <h1>Global Users</h1>
       {socialItem &&
-        socialItem.map((item) => (
-          <div className="users">
-            <div className='user-details'>
-              <div key={item.id}>
-                {item.username.charAt(0).toUpperCase() + item.username.slice(1) }
-                <div>Followed Users: {item.followedUsers}</div>
-                <div>Followers: {item.followers}</div>
-              </div>
-              <div className="follow-btn-container">
-                <a>Follow</a>
-              </div>
-            </div>
-          </div>
-        ))}
+        socialItem.map((item) => {
+          if (username !== item.username) {
+            return <SocialItem item={item}></SocialItem>;
+          }
+        })}
     </div>
   );
 };
-
 export default Social;
