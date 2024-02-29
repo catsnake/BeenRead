@@ -16,6 +16,7 @@ const articleSave = require('./articleSave');
 const clearArchive = require('./clearArchive');
 const { clear } = require('console');
 const PORT = 3000;
+const resetFollowers = require('./resetFollowers');
 
 // use dotenv
 dotenv.config();
@@ -27,8 +28,9 @@ app.use(cors());
 
 // connect database
 connectDB()
-// .then(() => dailyReset())
-// .then(() => articleSave());
+  // .then(() => dailyReset())
+  // .then(() => articleSave())
+  // .then(() => resetFollowers());
 
 app.use(express.static(path.join(__dirname, '../index.html')));
 
