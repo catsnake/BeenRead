@@ -12,7 +12,7 @@ function ArticleDisplay() {
       .then((response) => response.json())
       .then((data) => {
         setArticleOfTheDay(data);
-        setArticleTitle(data.title);
+        setArticleTitle(data.article.titles.normalized);
         setArticleImage(data.article.thumbnail.source);
         setArticleDescription(data.article.description);
       })
@@ -23,6 +23,7 @@ function ArticleDisplay() {
 
   const backgroundImageStyle = {
     backgroundImage: `url(${articleImage})`,
+    backgroundColor: 'rgba(56, 56, 56, 0.5)',
     backgroundSize: "cover",
     backgroundPosition: "center",
     boxShadow: "inset 0 0 20px #ffffff",
@@ -30,10 +31,15 @@ function ArticleDisplay() {
   };
 
   return (
-    <div className="article-display-container" style={backgroundImageStyle}>
-      <p className="aotd-body-text">Article of the Day</p>
-      <h3 className="aotd-header">{articleTitle}</h3>
-      <p className="aotd-description">{articleDescription}</p>
+    <div className="article-display-container">
+      <div className="article-inner-container">
+        <img className="article-image" src={articleImage} />
+        <div className="article-details">
+          <p className="aotd-body-text">Article of the Day</p>
+          <h3 className="aotd-header">{articleTitle.toString().replace('_', ' ')}</h3>
+          <p className="aotd-description">{articleDescription}</p>
+        </div>
+      </div>
     </div>
   );
 }

@@ -217,7 +217,8 @@ p {
 /* FEED COLUMN STYLES */
 
 #feedbox {
-  color: black;
+  color: white;
+  /* text-shadow: 2px 1px 2px rgba(56, 56, 56, 0.5); */
   /* display : grid;
     text-align: center;
     justify-content: center;
@@ -232,6 +233,10 @@ p {
     padding: 20px; */
 }
 
+#feedbox > p {
+  text-shadow: 2px 1px 2px rgba(56, 56, 56, 0.5);
+}
+
 .feed-column {
   position: relative;
   height: 100vh;
@@ -243,32 +248,43 @@ p {
 
 /* FEED ITEM STYLES */
 .feed-item-container {
-    margin: 30px 0;
-    color: black;
-    font-weight: 300;
-    width: 85%;
-    padding: 25px 30px;
-    border-radius: 40px;
-    background: #F1F1F1; 
-    background: linear-gradient(135deg, #F1F1F1, #ECECEC);
+  margin: 30px 0;
+  color: black;
+  font-weight: 300;
+  width: 85%;
+  padding: 25px 30px;
+  border-radius: 40px;
+  background: rgb(149,149,149);
+  background: linear-gradient(61deg, rgba(149,149,149,0.5) 0%, rgba(166,166,166,1) 100%);
+}
+
+.did-user-read-container > p {
+  color: white;
+}
+
+.streak-container > p {
+  color: white;
 }
 
 .authenticated-feed-item-container {
   /* margin: 30px 0; */
   margin-bottom: 30px;
-  color: black;
+  color: white;
   font-weight: 300;
   width: 100%;
   padding: 25px 30px;
   /* background: #F1F1F1;
   background: linear-gradient(135deg, #F1F1F1, #ECECEC); */
-  background: rgb(198,198,198);
-  background: linear-gradient(308deg, rgba(198,198,198,0) 0%, rgba(105,105,105,1) 100%);
+  /* background: rgb(198,198,198); */
+  /* background: linear-gradient(308deg, rgba(198,198,198,0) 0%, rgba(105,105,105,1) 100%); */
+  background-color: rgba(0, 0, 0, 0.5);
   border-bottom: 4px solid rgba(181, 181, 181, 0.5);
 }
 
 .authenticated-user-header {
+  color: white;
   font-size: 24px;
+  font-weight: 600;
 }
 
 .feed-item-header {
@@ -279,8 +295,9 @@ p {
 
 .likes-count {
   font-family: "Hanken Grotesk", sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   margin-left: 10px;
+  color: lightgray;
 }
 
 .reactions-container {
@@ -301,10 +318,12 @@ p {
 
 .user-info {
   display: flex;
+  color: white;
 }
 
 .feed-item-email-text {
-  color: rgb(132, 132, 132);
+  /* color: rgb(132, 132, 132); */
+  color: rgb(181, 181, 181);
   font-size: 14px;
   margin-left: 7px;
 }
@@ -326,8 +345,19 @@ p {
   cursor: pointer;
 }
 
+.article-inner-container {
+  display: flex;
+  align-items: center;
+}
+
+.article-image {
+  width: 125px;
+  height: 125px;
+  margin-right: 25px;
+}
+
 .article-display-container {
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 200px;
     display: flex;
@@ -357,6 +387,8 @@ p {
 .article-display-outer-container {
   cursor: pointer;
 }
+
+
 
 /* ARTICLE MODAL STYLES */
 .modal-closed {
