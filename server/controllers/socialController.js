@@ -136,4 +136,17 @@ socialController.getFollowers = async (req, res, next) => {
   }
 };
 
+socialController.getAllUsers = async (req, res, next) => {
+  try {
+    const users = await User.find()
+        res.locals.allUsers = users;
+        return next();
+  } catch (error) {
+    return next({
+      log: 'Error in userController.getAllUsers: ',
+      message: { error: 'cannot get allUsers' },
+    });
+  }
+};
+
 module.exports = socialController;
