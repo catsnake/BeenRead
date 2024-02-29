@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   // Router,
   // Route,
@@ -12,19 +12,17 @@ import Social from './components/Social.jsx';
 
 function App() {
   return (
-    <div className="newspaper-texture">
+    <div>
+      <div className="subtitle-container">
+        <h5
+          id="subtitle"
+          className=""
+        >
+          WellRead.
+        </h5>
+      </div>
       <div className="">
-        <div className="subtitle-container">
-          <h5
-            id="subtitle"
-            className=""
-          >
-            WellRead.
-          </h5>
-        </div>
-        <div className="">
-          <Outlet />
-        </div>
+        <Outlet />
       </div>
     </div>
   );

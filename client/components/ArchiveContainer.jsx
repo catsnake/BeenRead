@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import ArchiveItem from './ArchiveItem.jsx';
+import Navbar from './Navbar.jsx';
 
 const ArchiveContainer = () => {
   const userData = useSelector((state) => state.auth);
@@ -50,8 +51,11 @@ const ArchiveContainer = () => {
 
   return (
     <div className="archive-container">
-      <h1>Archive</h1>
-      <div className="archive-items">{archiveItems}</div>
+      <Navbar />
+      <div className="archive-content">
+        <h1>Archive</h1>
+        <div className="archive-items">{archiveItems}</div>
+      </div>
     </div>
   );
 };
