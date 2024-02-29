@@ -11,6 +11,7 @@ import FeedItem from './FeedItem.jsx';
 import AuthenticatedFeedItem from './AuthenticatedFeedItem.jsx';
 import ArticleDisplay from './ArticleDisplay.jsx';
 import ArticleModal from './ArticleModal.jsx';
+import Social from './Social.jsx';
 
 function Feed() {
   const [feedItems, setFeedItems] = useState([]);
