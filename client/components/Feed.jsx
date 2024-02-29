@@ -10,7 +10,6 @@ import { Navbar } from './Navbar';
 import FeedItem from './FeedItem.jsx';
 import AuthenticatedFeedItem from './AuthenticatedFeedItem.jsx';
 import ArticleDisplay from './ArticleDisplay.jsx';
-import ArticleModal from './ArticleModal.jsx';
 
 function Feed() {
   // This is where our times requests from front end will be.
@@ -26,7 +25,7 @@ function Feed() {
 
   // const dispatch = useDispatch();
   // const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpened] = useState(false);
+
   const [feedItems, setFeedItems] = useState([]);
   // const [userDB, setUserDB] = useState({});
   const userData = useSelector((state) => state.auth);
