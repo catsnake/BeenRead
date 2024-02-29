@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import SocialItem from './SocialItem';
+import Navbar from "./Navbar";
 
 const Social = () => {
   const [socialItem, setSocialItem] = useState([]);
