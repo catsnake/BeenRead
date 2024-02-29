@@ -10,6 +10,7 @@ import { Navbar } from './Navbar';
 import FeedItem from './FeedItem.jsx';
 import AuthenticatedFeedItem from './AuthenticatedFeedItem.jsx';
 import ArticleDisplay from './ArticleDisplay.jsx';
+import ArticleModal from './ArticleModal.jsx';
 
 function Feed() {
   const [isModalOpen, setIsModalOpened] = useState(false);
@@ -51,6 +52,7 @@ function Feed() {
         console.log('there was an error in feed: ', err);
       });
   }, []);
+
   const handleModalToggle = () => {
     console.log('handle modal toggle hit', isModalOpen)
     setIsModalOpened(!isModalOpen);
