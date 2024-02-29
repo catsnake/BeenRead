@@ -74,11 +74,6 @@ const Authenticator = () => {
             required
           />
         </div>
-        {/* <button
-          type="submit"
-          class="">Already have an account? Sign 
-        </button> */}
-        {/* <p className="body-text">Already have an account? <span><Link to='/signin' className="general-link">Sign in now</Link></span>.</p> */}
        <p className='general-link' onClick={submitHandler}>Sign In</p>
         <div><p className="body-text inline">Not registered? </p><span><Link to="/signup" className="general-link">Create account</Link></span>
         </div>
