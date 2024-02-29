@@ -22,7 +22,7 @@ const ArchiveContainer = () => {
   }, []);
 
   return (
-    <div>
+    <div className='archive-container'>
       <h1>Archive</h1>
       {articles.map((entry) => (
         <ArchiveItem key={entry.id} article={entry.article} />
