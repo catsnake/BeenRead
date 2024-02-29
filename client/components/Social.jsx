@@ -25,13 +25,13 @@ const Social = () => {
 
   return (
     <div className="userContainer">
-      <h1>Existing Users</h1>
+      <h1>Global Users</h1>
       {socialItem &&
         socialItem.map((item) => (
           <div className="users">
             <div className='user-details'>
               <div key={item.id}>
-                {item.username}
+                {item.username.charAt(0).toUpperCase() + item.username.slice(1) }
                 <div>Followed Users: {item.followedUsers}</div>
                 <div>Followers: {item.followers}</div>
               </div>

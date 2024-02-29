@@ -67,7 +67,7 @@ const articleSave = async () => {
 
     const text = removeHtmlFormatting(originalText);
 
-    console.log('cleaned text', text.slice(0, 2000));
+    // console.log('cleaned text', text.slice(0, 2000));
 
     // Uncomment this block to check for duplicates before saving.
     const duplicate = await Article.findOne({ title });
