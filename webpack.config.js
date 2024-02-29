@@ -22,9 +22,9 @@ module.exports = {
         target: 'http://localhost:3000',
       },
     ],
-    // static: {
-    //   directory: path.join(__dirname, 'public'),
-    // },
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
     open: true,
     hot: true,
     liveReload: true,

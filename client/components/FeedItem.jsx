@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ReactionPicker from './ReactionPicker';
-
 
 function FeedItem({
   dailyReactions,
