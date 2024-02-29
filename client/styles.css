@@ -18,12 +18,12 @@ html {
   margin: 0;
   padding: 0;
   color: #fad6b4;
-  font-family: "Playfair Display", serif;
+  font-family: 'Playfair Display', serif;
   overflow: hidden;
 }
 
 p {
-  font-family: "Hanken Grotesk", sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
 }
 
 * {
@@ -61,7 +61,7 @@ p {
 }
 
 #subtitle {
-  font-family: "Playfair Display", serif;
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
   font-size: 42px;
   font-style: italic;
@@ -72,12 +72,12 @@ p {
 
 .body-text {
   color: #fad6b4;
-  font-family: "Hanken Grotesk", sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 300;
 }
 
 .sign-in-text {
-  font-family: "Playfair Display", serif;
+  font-family: 'Playfair Display', serif;
   font-size: 24px;
   font-weight: 600;
   /* color: #f2b56a; */
@@ -87,7 +87,7 @@ p {
 }
 
 .general-link {
-  font-family: "Playfair Display", serif;
+  font-family: 'Playfair Display', serif;
   color: #e7b34d;
   cursor: pointer;
 }
@@ -101,7 +101,7 @@ p {
 
 .form-input {
   font-weight: 300;
-  font-family: "Hanken Grotesk", sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-size: 16px;
   width: 100%;
   margin-bottom: 10px;
@@ -127,7 +127,7 @@ p {
 }
 
 .form-input::placeholder {
-  font-family: "Hanken Grotesk", sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   color: #edddc4;
 }
 
@@ -170,7 +170,7 @@ p {
 }
 
 .nav-item {
-  font-family: "Hanken Grotesk", sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   margin: 15px 15px;
   display: flex;
   color: white;
@@ -185,7 +185,7 @@ p {
 }
 
 .logout-btn {
-  font-family: "Hanken Grotesk", sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   text-align: left;
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -246,8 +246,12 @@ p {
   width: 85%;
   padding: 25px 30px;
   border-radius: 40px;
-  background: rgb(149,149,149);
-  background: linear-gradient(61deg, rgba(149,149,149,0.5) 0%, rgba(166,166,166,1) 100%);
+  background: rgb(149, 149, 149);
+  background: linear-gradient(
+    61deg,
+    rgba(149, 149, 149, 0.5) 0%,
+    rgba(166, 166, 166, 1) 100%
+  );
 }
 
 .did-user-read-container > p {
@@ -286,7 +290,7 @@ p {
 }
 
 .likes-count {
-  font-family: "Hanken Grotesk", sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 300;
   margin-left: 10px;
   color: lightgray;
@@ -349,26 +353,26 @@ p {
 }
 
 .article-display-container {
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 25px;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 25px;
 }
 
 .aotd-header {
-    font-family: 'Playfair Display', serif;
-    font-size: 42px;
-    font-weight: 600;
-    color: white;
-    text-shadow: 2px 1px 2px rgba(56, 56, 56, 0.5);
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 2px 1px 2px rgba(56, 56, 56, 0.5);
 }
 
 .aotd-body-text {
-    color: white;
-    text-shadow: 2px 1px 2px rgba(56, 56, 56, 0.5);
+  color: white;
+  text-shadow: 2px 1px 2px rgba(56, 56, 56, 0.5);
 }
 
 .aotd-description {
@@ -379,8 +383,6 @@ p {
 .article-display-outer-container {
   cursor: pointer;
 }
-
-
 
 /* ARTICLE MODAL STYLES */
 .modal-closed {
@@ -426,11 +428,11 @@ p {
   font-weight: 700;
   /* margin-bottom: 15px; */
   position: sticky;
-  font-family: "Playfair Display", serif;
+  font-family: 'Playfair Display', serif;
 }
 
 .article-body-text {
-  font-family: "Hanken Grotesk", sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   height: 75%;
   font-weight: 300;
   line-height: 1.5;
@@ -465,13 +467,14 @@ p {
 /* ARCHIVE STYLES */
 
 .archive-container {
-  max-height: 600px;
-  overflow-y: auto;
+  overflow-y: scroll;
   color: black;
+  height: 90vh;
+  width: 100vw;
 }
 
 .archive-container h1 {
-  font-family: "Playfair Display", serif;
+  font-family: 'Playfair Display', serif;
   font-size: 42px;
   font-weight: 600;
   margin-bottom: 20px;
@@ -480,10 +483,17 @@ p {
 }
 
 .archive-container h2 {
-  font-family: "Playfair Display", serif;
+  font-family: 'Playfair Display', serif;
   font-size: 30px;
   font-weight: 600;
   margin-bottom: 20px;
+}
+
+.archive-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .archive-item {
@@ -491,11 +501,10 @@ p {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  width: 100%;
-  max-width: 600px;
+  width: 90%;
   background-color: #fff;
   color: black;
-  font-family: "Hanken Grotesk", sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
 }
 
 .archive-item p {
