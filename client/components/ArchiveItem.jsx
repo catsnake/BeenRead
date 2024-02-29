@@ -5,7 +5,7 @@ import '../styles.css';
 
 const ArchiveItem = ({ article }) => {
   const [isModalOpen, setIsModalOpened] = useState(false);
-
+  const [archive, setArchive] = useState(false)
   const { title, description, createdAt } = article;
 
   const formattedDate = new Date(createdAt).toLocaleDateString();
@@ -13,6 +13,7 @@ const ArchiveItem = ({ article }) => {
   const handleModalToggle = () => {
     console.log('handle modal toggle hit', isModalOpen);
     setIsModalOpened(!isModalOpen);
+    setArchive(true)
   };
 
   return (
@@ -29,6 +30,8 @@ const ArchiveItem = ({ article }) => {
           isModalOpen={isModalOpen}
           setIsModalOpened={setIsModalOpened}
           article={article}
+          archive = {archive}
+          setArchive = {setArchive}
         />
       )}
     </div>
