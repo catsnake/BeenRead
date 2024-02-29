@@ -27,4 +27,13 @@ router.get(
   },
 );
 
+router.get(
+  '/getAllUsers/',
+  socialController.getAllUsers,
+  (req, res) => {
+    res.status(200).json(res.locals.allUsers);
+  },
+);
+
+
 module.exports = router;
