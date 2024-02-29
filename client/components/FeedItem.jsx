@@ -103,7 +103,7 @@ function FeedItem({
           <button onClick={handleClick} className="like-btn">
             👍
           </button>
-          <span className="likes-count">{`${likes}`}</span>
+          <span className="likes-count">{` ${likes} ${likes > 1 ? 'likes' : 'like'}`}</span>
         </div>
       </div>
     </>

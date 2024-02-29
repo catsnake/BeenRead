@@ -267,6 +267,12 @@ p {
     align-items: center;
 }
 
+.likes-count {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
 .reactions-container {
     width: 100%;
     border-top: 1px solid lightgray;
@@ -274,6 +280,13 @@ p {
     padding-top: 5px;
     display: flex;
     align-items: center;
+}
+
+.empty-feed-text {
+  color: gray;
+  font-weight: 300;
+  font-style: italic;
+  margin-top: 10px;
 }
 
 .user-info {

@@ -31,6 +31,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
+    fallback: {
+
+    }
   },
   module: {
     rules: [
