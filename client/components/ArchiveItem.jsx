@@ -1,6 +1,7 @@
 import React from 'react';
 import ArticleModal from './ArticleModal';
 import { useState } from 'react';
+import '../styles.css'; 
 
 const ArchiveItem = ({ article }) => {
   const [isModalOpen, setIsModalOpened] = useState(false);
@@ -15,9 +16,8 @@ const ArchiveItem = ({ article }) => {
   };
 
   return (
-    <div>
+    <div className='archive-item'>
       <h2
-        className="article-display-outer-container"
         onClick={handleModalToggle}
       >
         {article.article.titles.normalized}{' '}
