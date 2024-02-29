@@ -21,21 +21,18 @@ export const Navbar = ({userData}) => {
   <div className="sidenav">
     <div className="upper-nav-menu">
       <p className='menu-text'>MENU</p>
-      {/* <Link to={`/articleHistory/${userData.userData._id}`} className="nav-item" aria-current="page"> */}
-      <Link to={`/archive`} className='nav-item' aria-current='page'>
-        <span>
-          <svg className='nav-icon' xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M19 3.25H6.75a2.43 2.43 0 0 0-2.5 2.35V18a2.85 2.85 0 0 0 2.94 2.75H19a.76.76 0 0 0 .75-.75V4a.76.76 0 0 0-.75-.75Zm-.75 16H7.19A1.35 1.35 0 0 1 5.75 18a1.35 1.35 0 0 1 1.44-1.25h11.06Zm0-4H7.19a3 3 0 0 0-1.44.37V5.6a.94.94 0 0 1 1-.85h11.5Z"/>
-            <path fill="currentColor" d="M8.75 8.75h6.5a.75.75 0 0 0 0-1.5h-6.5a.75.75 0 0 0 0 1.5Zm0 3.5h6.5a.75.75 0 0 0 0-1.5h-6.5a.75.75 0 0 0 0 1.5Z"/>
-          </svg>
-        </span>History</Link>
       <Link to={`/feed`} className="nav-item" aria-current="page">
         <span>
           <svg className='nav-icon article-icon' xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
             <path fill="none" stroke="currentColor" stroke-width="2" d="M16 7h3v4h-3V7Zm-7 8h11M9 11h4M9 7h4M6 18.5a2.5 2.5 0 1 1-5 0V7h5.025M6 18.5V3h17v15.5a2.5 2.5 0 0 1-2.5 2.5h-17"/>
           </svg>
-        </span>Article</Link>
-      {/* <Link to={`/articleHistory/${userData.userData._id}`} className="nav-item" aria-current="page"> */}
+        </span>Feed</Link>
+      <Link to={`/archive`} className='nav-item' aria-current='page'>
+        <span>
+        <svg className='nav-icon' xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v2a2 2 0 0 1-1.017 1.742c.011.084.017.17.017.258v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9c0-.087.006-.174.017-.258A2 2 0 0 1 2 7V5zm18 2V5H4v2h16zM5 9v10h14V9H5zm3 3a1 1 0 0 1 1-1h6a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1z"/>
+        </svg>
+        </span>Archive</Link>
       <Link to={`/articleHistory`} className="nav-item" aria-current="page">
         <span>
           <svg className='nav-icon' xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
