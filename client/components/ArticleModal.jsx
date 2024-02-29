@@ -68,6 +68,7 @@ const ArticleModal = ({
 
       setReadTimes([]);
       setDailyStreak(dailyStreak + 1);
+      setReadArticle(true);
     } else {
       setArchive(false);
     }
