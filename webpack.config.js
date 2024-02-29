@@ -30,10 +30,7 @@ module.exports = {
     liveReload: true,
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
-    fallback: {
-
-    }
+    extensions: ['.js', '.jsx', '.json']
   },
   module: {
     rules: [
