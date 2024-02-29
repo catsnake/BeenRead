@@ -125,6 +125,7 @@ function Feed() {
           {isModalOpen && (
             <ArticleModal
               setDailyStreak={setDailyStreak}
+              dailyStreak={dailyStreak}
               article={articleOfTheDay}
               username={username}
               readTimes={readTimes}

@@ -10,6 +10,7 @@ const ArticleModal = ({
   archive,
   setArchive,
   setDailyStreak,
+  dailyStreak
 }) => {
   const [contentText, setContentText] = useState('');
   const contentUrl = 'https://en.wikipedia.org/wiki/Polar_bear';
