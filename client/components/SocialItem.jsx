@@ -55,13 +55,9 @@ const SocialItem = ({ item }) => {
     fetch(`http://localhost:3000/api/social/getFollowedUsers/${username}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log('data:', data);
-        data.forEach((user) => {
-          console.log('user:', user);
-          if (user.username === item.username) {
-            setFollowed('Unfollow');
-          }
-        });
+        data.includes(item.username)
+          ? setFollowed('Unfollow')
+          : setFollowed('Follow');
       })
       .catch((error) => {
         console.error('Error:', error);

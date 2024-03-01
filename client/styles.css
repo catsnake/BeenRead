@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital@0;1&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital@0;1&display=swap');
 
 html {
   margin: 0;
@@ -40,16 +40,6 @@ html {
 
 p {
   font-family: 'Hanken Grotesk', sans-serif;
-}
-
-* {
-  /* background-color: rgb(246, 205, 212); */
-  /* font-family: "DM Serif Display", serif; */
-}
-
-#login {
-  /* background-color: rgb(246, 205, 212);
-    box-shadow: 8px 8px 8px 8px rgb(198, 155, 162); */
 }
 
 .authenticator-wrapper {
@@ -156,10 +146,6 @@ p {
   margin-bottom: 20px;
 }
 
-#article {
-  /* border-radius: 25px; */
-}
-
 /* NAVBAR STYLES */
 
 .sidenav {
@@ -252,7 +238,7 @@ p {
   padding-left: 40px;
   margin-right: 20px;
   overflow-y: scroll !important;
-  background: rgb(0,0,0, .75);
+  background: rgb(0, 0, 0, 0.75);
   /* background-color: black; */
   width: 100%;
 }
@@ -322,7 +308,7 @@ p {
 
 .like-btn:hover {
   transform: scale(1.5);
-  transition: .25s ease-out;
+  transition: 0.25s ease-out;
 }
 
 .reactions-container {
@@ -494,10 +480,6 @@ p {
     box-shadow: 0px 0px 1px 1px rgb(0,0,0); */
 }
 
-#gimme:active {
-  /* background-color: rgb(177, 143, 148); */
-}
-
 /* ARCHIVE STYLES */
 
 .archive-container {
@@ -569,9 +551,9 @@ p {
   color: white;
   background-color: rgba(211, 211, 211, 0.182);
   font-family: 'Hanken Grotesk', sans-serif;
-  position:relative;
+  position: relative;
   padding: 15px;
-  overflow:scroll;
+  overflow: scroll;
 }
 
 .userContainer > h1 {
