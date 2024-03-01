@@ -1,32 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  Router,
-  Route,
-  Routes,
+  // Router,
+  // Route,
+  // Routes,
   Link,
-  BrowserRouter,
+  // BrowserRouter,
   Outlet,
 } from 'react-router-dom';
 
-// import Authenticator from "./components/Authenticator.jsx";
-// import Feed from "./components/Feed.jsx";
+import Social from './components/Social.jsx';
 
-const App = () => {
+function App() {
   return (
-    <div className="">
-      <div>
-        <h5
-          id="subtitle"
-          className="flex flex-col items-center justify-center mx-auto md:my-6 text-black font-size-68px"
-        >
-          BeRead
+    <div>
+      <div className="subtitle-container">
+        <h5 id="subtitle" className="">
+          <Link to="/feed">WellRead.</Link>
         </h5>
       </div>
-      <div className="mt-a6 p-8 mx-auto">
+      <div className="">
         <Outlet />
       </div>
     </div>
   );
-};
+}
 
 export default App;
