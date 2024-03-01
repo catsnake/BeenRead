@@ -53,6 +53,7 @@ socialController.getFollowedUsers = async (req, res, next) => {
         const followedUsernames = user.followedUsers.map(
           (followedUser) => followedUser.username
         );
+        // console.log(followedUsernames);
         res.locals.followedUsers = followedUsernames;
         return next();
       });
@@ -138,9 +139,9 @@ socialController.getFollowers = async (req, res, next) => {
 
 socialController.getAllUsers = async (req, res, next) => {
   try {
-    const users = await User.find()
-        res.locals.allUsers = users;
-        return next();
+    const users = await User.find();
+    res.locals.allUsers = users;
+    return next();
   } catch (error) {
     return next({
       log: 'Error in userController.getAllUsers: ',

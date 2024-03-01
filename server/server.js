@@ -16,7 +16,9 @@ const articleSave = require('./articleSave');
 const clearArchive = require('./clearArchive');
 const { clear } = require('console');
 const PORT = 3000;
-const resetFollowers = require('./resetFollowers');
+const resetFollowers = require('./ResetFollowers');
+
+const resetJob = require('./dailyRun');
 
 // use dotenv
 dotenv.config();
@@ -28,6 +30,10 @@ app.use(cors());
 
 // connect database
 connectDB()
+  .then(() => {
+    console.log('MongoDB connected...');
+    resetJob();
+  })
   // .then(() => dailyReset())
   // .then(() => articleSave())
   // .then(() => resetFollowers());
@@ -73,13 +79,9 @@ app.listen(PORT, () => {
 });
 
 // checks every five minutes if midnight just passed, if so runs dailyReset
-setInterval(() => {
-  const currentTime = new Date(Date.now());
-  if (currentTime.getHours() === 0 && currentTime.getMinutes() < 6) {
-    dailyReset();
-    articleSave();
-  }
-}, 300000);
+
+
+
 
 // articleSave();
 

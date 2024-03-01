@@ -1,6 +1,6 @@
 const User = require('./models/userModel');
 
-dailyReset = async () => {
+const dailyReset = async () => {
     try {
       const users = await User.find();
       

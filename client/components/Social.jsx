@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import SocialItem from './SocialItem';
-import Navbar from "./Navbar";
+import Navbar from './Navbar';
 
 const Social = () => {
   const [socialItem, setSocialItem] = useState([]);
@@ -30,14 +30,19 @@ const Social = () => {
   }, []);
 
   return (
-    <div className="userContainer">
-      <h1>Global Users</h1>
-      {socialItem &&
-        socialItem.map((item) => {
-          if (username !== item.username) {
-            return <SocialItem item={item}></SocialItem>;
-          }
-        })}
+    <div className="archive-container">
+      <div className="archive-nav-container">
+        <Navbar />
+      </div>
+      <div className="userContainer">
+        <h1>Global Users</h1>
+        {socialItem &&
+          socialItem.map((item) => {
+            if (username !== item.username) {
+              return <SocialItem item={item} key={item._id}></SocialItem>;
+            }
+          })}
+      </div>
     </div>
   );
 };
